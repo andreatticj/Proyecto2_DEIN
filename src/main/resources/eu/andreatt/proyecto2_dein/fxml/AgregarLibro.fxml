@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.andreatt.proyecto2_dein.controllers.AgregarLibroController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="250.0" minHeight="40.0" prefHeight="70.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="250.0" minHeight="40.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" minHeight="40.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" minHeight="40.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" minHeight="40.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="280.0" minHeight="47.0" prefHeight="47.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="280.0" minHeight="100.0" prefHeight="184.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label prefHeight="39.0" prefWidth="88.0" text="%labelTitulo" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="39.0" prefWidth="88.0" text="%labelAutor" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="39.0" prefWidth="88.0" text="%labelEditorial" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="39.0" prefWidth="88.0" text="%labelEstado" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="textFieldTitulo" prefWidth="157.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="140.0" right="100.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipTitulo" />
+         </tooltip>
+      </TextField>
+      <TextField fx:id="textFieldAutor" prefWidth="157.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="140.0" right="100.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipAutor" />
+         </tooltip>
+      </TextField>
+      <TextField fx:id="textFieldEditorial" prefWidth="157.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="140.0" right="100.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipEditorial" />
+         </tooltip>
+      </TextField>
+      <Button fx:id="botonCancelar" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#actionCancelar" prefHeight="50.0" prefWidth="130.0" styleClass="botonCancelar" stylesheets="@../css/application.css" text="%botonCancelar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <tooltip>
+            <Tooltip text="%tooltipCancelar" />
+         </tooltip>
+      </Button>
+      <Button fx:id="botonGuardar" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#actionGuardar" prefHeight="50.0" prefWidth="130.0" styleClass="botonGuardar" stylesheets="@../css/application.css" text="%botonGuardar" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <tooltip>
+            <Tooltip text="%tooltipGuardar" />
+         </tooltip>
+      </Button>
+      <Label prefHeight="39.0" prefWidth="88.0" text="%labelCodigo">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="textFieldCodigo" prefWidth="157.0" GridPane.columnSpan="2">
+         <GridPane.margin>
+            <Insets left="140.0" right="100.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipCodigo" />
+         </tooltip>
+      </TextField>
+      <Label prefHeight="39.0" prefWidth="88.0" text="%labelBaja" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </Label>
+      <ComboBox fx:id="comboBoxEstado" prefWidth="150.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="140.0" right="100.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipComboEstado" />
+         </tooltip>
+      </ComboBox>
+      <ComboBox fx:id="comboBoxBaja" prefWidth="150.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="140.0" right="100.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipComboBaja" />
+         </tooltip>
+      </ComboBox>
+   </children>
+</GridPane>

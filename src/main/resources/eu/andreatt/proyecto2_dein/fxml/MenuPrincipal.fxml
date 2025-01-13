@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <GridPane prefHeight="736.0" prefWidth="1200.0" style="-fx-background-color: lightgray;">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="110.0" minHeight="1.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="285.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="557.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="557.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="562.0" minHeight="10.0" prefHeight="526.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <MenuBar GridPane.columnSpan="4">
+              <menus>
+                <Menu mnemonicParsing="false" text="%ayuda">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#actionAcercaDe" text="%acercade" />
+                        <MenuItem mnemonicParsing="false" onAction="#actionGuiaRapida" text="%guiarapida" />
+                     </items></Menu>
+                  <Menu mnemonicParsing="false" text="%informes">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#actionListadoLibros" text="%listadolibros" />
+                        <MenuItem mnemonicParsing="false" onAction="#actionGraficoPrestamos" text="%graficoprestamos" />
+                        <MenuItem mnemonicParsing="false" onAction="#actionAlumnosItem" text="%alumnositem" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <GridPane fx:id="panelAlumno" style="-fx-background-color: white;" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+               <children>
+                  <Button fx:id="botonAlumno" mnemonicParsing="false" onAction="#actionBotonAlumno" prefHeight="80.0" prefWidth="200.0" styleClass="botonMenu" stylesheets="@../css/application.css" text="%alumno" textAlignment="CENTER" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="%tooltipBotonAlumno" />
+                     </tooltip>
+                  </Button>
+               </children>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+            <GridPane fx:id="panelLibro" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="botonLibro" mnemonicParsing="false" onAction="#actionBotonLibro" prefHeight="80.0" prefWidth="200.0" styleClass="botonMenu" stylesheets="@../css/application.css" text="%libro" textAlignment="CENTER" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="%tooltipBotonLibro" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </GridPane>
+            <GridPane fx:id="panelPrestamo" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="botonPrestamo" mnemonicParsing="false" onAction="#actionBotonPrestamo" prefHeight="80.0" prefWidth="200.0" styleClass="botonMenu" stylesheets="@../css/application.css" text="%prestamo" textAlignment="CENTER" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="%tooltipBotonPrestamo" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </GridPane>
+            <GridPane fx:id="panelHistoricoPrestamo" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="botonHistoricoPrestamo" mnemonicParsing="false" onAction="#actionBotonHistoricoPrestamo" prefHeight="80.0" prefWidth="200.0" styleClass="botonMenu" stylesheets="@../css/application.css" text="%historicoprestamos" textAlignment="CENTER" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="%tooltipBotonHistorico" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </GridPane>
+            <TableView fx:id="tableAlumno" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="6" GridPane.rowIndex="4">
+              <columns>
+                <TableColumn fx:id="columnDniAlumno" prefWidth="75.0" text="%dni" />
+                  <TableColumn fx:id="columnNombreAlumno" prefWidth="75.0" text="%nombre" />
+                  <TableColumn fx:id="columnApellido1Alumno" prefWidth="75.0" text="%apellido1" />
+                  <TableColumn fx:id="columnApellido2Alumno" prefWidth="75.0" text="%apellido2" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TableView>
+            <TableView fx:id="tableLibro" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="6" GridPane.rowIndex="4">
+              <columns>
+                <TableColumn fx:id="columnCodigoLibro" prefWidth="75.0" text="%codigo" />
+                <TableColumn fx:id="columnTituloLibro" prefWidth="75.0" text="%titulo" />
+                  <TableColumn fx:id="columnAutorLibro" prefWidth="75.0" text="%autor" />
+                  <TableColumn fx:id="columnEditorialLibro" prefWidth="75.0" text="%editorial" />
+                  <TableColumn fx:id="columnEstadoLibro" prefWidth="75.0" text="%estado" />
+                  <TableColumn fx:id="columnBajaLibro" prefWidth="75.0" text="%baja" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TableView>
+            <TableView fx:id="tablePrestamo" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="6" GridPane.rowIndex="4">
+              <columns>
+                <TableColumn fx:id="columnIdPrestamoPrestamo" prefWidth="75.0" text="%idprestamo" />
+                <TableColumn fx:id="columnDniAlumnoPrestamo" prefWidth="75.0" text="%dnialumno" />
+                  <TableColumn fx:id="columnCodigoLibroPrestamo" prefWidth="75.0" text="%codigolibro" />
+                  <TableColumn fx:id="columnFechaPrestamoPrestamo" prefWidth="75.0" text="%fechaprestamo" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TableView>
+            <TableView fx:id="tableHistoricoPrestamo" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="6" GridPane.rowIndex="4">
+               <columns>
+                  <TableColumn fx:id="columnIdPrestamoHistoricoPrestamo" prefWidth="75.0" text="%idprestamo" />
+                  <TableColumn fx:id="columnDniAlumnoHistoricoPrestamo" prefWidth="75.0" text="%dnialumno" />
+                  <TableColumn fx:id="columnCodigoLibroHistoricoPrestamo" prefWidth="75.0" text="%codigolibro" />
+                  <TableColumn fx:id="columnFechaPrestamoHistoricoPrestamo" prefWidth="75.0" text="%fechaprestamo" />
+                  <TableColumn fx:id="columnFechaDevolucionHistoricoPrestamo" prefWidth="75.0" text="%fechadevolucion" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TableView>
+            <Label fx:id="labelTablaActual" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelFiltro" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="198.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="150.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="textFieldFiltro" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="150.0" />
+               </GridPane.margin>
+               <tooltip>
+                  <Tooltip text="%tooltipFiltro" />
+               </tooltip>
+            </TextField>
+            <Label fx:id="labelFiltroHistorico2" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="150.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="textFieldFiltroHistorico2" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="150.0" />
+               </GridPane.margin>
+               <tooltip>
+                  <Tooltip text="%tooltipFiltro" />
+               </tooltip>
+            </TextField>
+            <Label fx:id="labelFiltroHistorico" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="134.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="150.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="textFieldFiltroHistorico" visible="false" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="150.0" />
+               </GridPane.margin>
+               <tooltip>
+                  <Tooltip text="%tooltipFiltro" />
+               </tooltip></TextField>
+            <Button fx:id="botonAgregarAlumno" mnemonicParsing="false" onAction="#actionAgregarAlumno" prefHeight="40.0" prefWidth="210.0" styleClass="botonAgregar" stylesheets="@../css/application.css" text="%botonAgregarAlumno" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="%tooltipAgregarAlumno" />
+               </tooltip>
+            </Button>
+            <Button fx:id="botonEditarAlumno" mnemonicParsing="false" onAction="#actionEditarAlumno" prefHeight="40.0" prefWidth="210.0" styleClass="botonEditar" stylesheets="@../css/application.css" text="%botonEditarAlumno" visible="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="%tooltipEditarAlumno" />
+               </tooltip>
+            </Button>
+            <Button fx:id="botonAgregarLibro" mnemonicParsing="false" onAction="#actionAgregarLibro" prefHeight="40.0" prefWidth="210.0" styleClass="botonAgregar" stylesheets="@../css/application.css" text="%botonAgregarLibro" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="%tooltipAgregarLibro" />
+               </tooltip>
+            </Button>
+            <Button fx:id="botonEditarLibro" mnemonicParsing="false" onAction="#actionEditarLibro" prefHeight="40.0" prefWidth="210.0" styleClass="botonEditar" stylesheets="@../css/application.css" text="%botonEditarLibro" visible="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="%tooltipEditarLibro" />
+               </tooltip>
+            </Button>
+            <Button fx:id="botonBorrarLibro" mnemonicParsing="false" onAction="#actionBorrarLibro" prefHeight="40.0" prefWidth="210.0" styleClass="botonBorrar" stylesheets="@../css/application.css" text="%botonBorrarLibro" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <tooltip>
+                  <Tooltip text="%tooltipBorrarLibro" />
+               </tooltip>
+            </Button>
+            <Button fx:id="botonAgregarPrestamo" mnemonicParsing="false" onAction="#actionAgregarPrestamo" prefHeight="40.0" prefWidth="210.0" styleClass="botonAgregar" stylesheets="@../css/application.css" text="%botonAgregarPrestamo" visible="false" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="%tooltipAgregarPrestamo" />
+               </tooltip>
+            </Button>
+            <Button fx:id="botonAgregarHistoricoPrestamo" mnemonicParsing="false" onAction="#actionAgregarHistoricoPrestamo" prefHeight="40.0" prefWidth="210.0" styleClass="botonAgregar" stylesheets="@../css/application.css" text="%botonAgregarHistoricoPrestamo" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="%tooltipAgregarHistorico" />
+               </tooltip>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</GridPane>

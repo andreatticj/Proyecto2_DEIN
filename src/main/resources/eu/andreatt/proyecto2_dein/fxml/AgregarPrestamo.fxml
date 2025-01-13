@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.andreatt.proyecto2_dein.controllers.AgregarPrestamoController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="223.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="169.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="250.0" minHeight="40.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" minHeight="40.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" minHeight="40.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="250.0" minHeight="40.0" prefHeight="70.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="280.0" minHeight="100.0" prefHeight="215.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label prefHeight="39.0" prefWidth="130.0" text="%labelIdPrestamo">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="39.0" prefWidth="130.0" text="%labelDniAlumno" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="39.0" prefWidth="130.0" text="%labelCodigoLibro" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="39.0" prefWidth="130.0" text="%labelFechaPrestamo" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="textFieldIdPrestamo" prefWidth="157.0" GridPane.columnSpan="2">
+         <GridPane.margin>
+            <Insets left="160.0" right="80.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipIdPrestamo" />
+         </tooltip>
+      </TextField>
+      <Button fx:id="botonCancelar" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#actionCancelar" prefHeight="50.0" prefWidth="130.0" styleClass="botonCancelar" stylesheets="@../css/application.css" text="%botonCancelar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <tooltip>
+            <Tooltip text="%tooltipCancelar" />
+         </tooltip>
+      </Button>
+      <Button fx:id="botonGuardar" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#actionGuardar" prefHeight="50.0" prefWidth="130.0" styleClass="botonGuardar" stylesheets="@../css/application.css" text="%botonGuardar" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <tooltip>
+            <Tooltip text="%tooltipGuardar" />
+         </tooltip>
+      </Button>
+      <ComboBox fx:id="comboBoxDniAlumno" prefWidth="150.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="160.0" right="80.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipComboDni" />
+         </tooltip>
+      </ComboBox>
+      <ComboBox fx:id="comboBoxCodigoLibro" prefWidth="150.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="160.0" right="80.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipComboCodigo" />
+         </tooltip>
+      </ComboBox>
+      <DatePicker fx:id="datePickerFechaPrestamo" GridPane.columnSpan="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="160.0" right="80.0" />
+         </GridPane.margin>
+         <tooltip>
+            <Tooltip text="%tooltipFechaPrestamo" />
+         </tooltip>
+      </DatePicker>
+   </children>
+</GridPane>
