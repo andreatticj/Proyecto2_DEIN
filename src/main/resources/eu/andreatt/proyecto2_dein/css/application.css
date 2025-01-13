@@ -1,0 +1,93 @@
+/*Estilos toda la hoja */
+.root{
+	-fx-font-family:'Arial';
+}
+
+/* Estilos botones del menú */
+.button {
+    -fx-background-color: lightgrey;
+    -fx-font-size: 12pt;
+}
+
+.botonMenu:hover {
+    -fx-font-size: 140%;
+    -fx-font-weight: bold;
+}
+
+/* Estilos boton Agregar, Editar, Borrar */
+.botonAgregar, .botonEditar, .botonBorrar, .botonGuardar, .botonCancelar{
+	-fx-font-size: 12pt;
+	-fx-text-fill:white;
+	-fx-background-radius:8pt;
+}
+
+/* Estilos boton Agregar, Guardar */
+.botonAgregar, .botonGuardar{
+    -fx-background-color: #186902;
+}
+
+.botonAgregar:hover, .botonGuardar:hover {
+    -fx-background-color: lime;
+    -fx-text-fill:black;
+    -fx-font-weight:bold;
+}
+
+/* Estilos boton Editar */
+.botonEditar {
+    -fx-background-color: #096197;
+}
+
+.botonEditar:hover {
+    -fx-background-color: #139FF4;
+    -fx-text-fill:black;
+    -fx-font-weight:bold;
+}
+
+/* Estilos boton Borrar, Cancelar */
+.botonBorrar, .botonCancelar {
+    -fx-background-color: #A90B25;
+}
+
+.botonBorrar:hover, .botonCancelar:hover {
+    -fx-background-color: #F41338;
+    -fx-text-fill:black;
+    -fx-font-weight:bold;
+}
+
+/* Tablas y Filas */
+.table-view {
+    -fx-background-color: lightgrey;
+    -fx-control-inner-background: transparent;
+}
+
+.table-row-cell {
+    -fx-background-color: #E0F7FA; /* Azul claro */
+}
+
+.table-view .column-header {
+    -fx-background-color: #0288D1; /* Azul intenso */
+    -fx-border-color: transparent #B3E5FC transparent transparent; /* Azul claro */
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.table-row-cell .table-cell {
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent transparent #81D4FA transparent; /* Azul medio */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #BBDEFB; /* Azul claro seleccionado */
+}
+
+/* Barras de Menú y Contexto */
+.menu-bar, .context-menu {
+    -fx-background-color: lightgrey;
+}
+
+.menu-bar, .context-menu .label{
+    -fx-text-fill: #000000;
+}
