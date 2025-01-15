@@ -303,7 +303,7 @@
                   <Tooltip text="%tooltipAgregarPrestamo" />
                </tooltip>
             </Button>
-            <Button fx:id="botonAgregarHistoricoPrestamo" mnemonicParsing="false" onAction="#actionAgregarHistoricoPrestamo" prefHeight="40.0" prefWidth="210.0" styleClass="botonAgregar" stylesheets="@../css/application.css" text="%botonAgregarHistoricoPrestamo" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button fx:id="botonAgregarHistoricoPrestamo" mnemonicParsing="false" onAction="#actionAgregarHistoricoPrestamo" prefHeight="40.0" prefWidth="210.0" styleClass="botonAgregar" stylesheets="@../css/application.css" text="%botonAgregarHistoricoPrestamo" visible="false" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font size="10.0" />
                </font>

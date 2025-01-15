@@ -101,7 +101,7 @@ public class AlumnoDao {
     public boolean insertarAlumno(String dni, String nombre, String apellido1, String apellido2) {
         try {
             conexion = new ConexionBD();
-            String consulta = "INSERT INTO alumno (dni, nombre, apellido1, apellido2) VALUES (?, ?, ?, ?)";
+            String consulta = "INSERT INTO Alumno (dni, nombre, apellido1, apellido2) VALUES (?, ?, ?, ?)";
 
             PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
             pstmt.setString(1, dni);
@@ -139,7 +139,7 @@ public class AlumnoDao {
     public boolean actualizarAlumno(String dni, String nombre, String apellido1, String apellido2) {
         try {
             conexion = new ConexionBD();
-            String consulta = "UPDATE alumno SET nombre = ?, apellido1 = ?, apellido2 = ? WHERE dni = ?";
+            String consulta = "UPDATE Alumno SET nombre = ?, apellido1 = ?, apellido2 = ? WHERE dni = ?";
 
             PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
             pstmt.setString(1, nombre);
@@ -174,7 +174,7 @@ public class AlumnoDao {
     public boolean existeAlumno(String dni) {
         try {
             conexion = new ConexionBD();
-            String consulta = "SELECT COUNT(*) FROM alumno WHERE dni = ?";
+            String consulta = "SELECT COUNT(*) FROM Alumno WHERE dni = ?";
 
             PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
             pstmt.setString(1, dni);

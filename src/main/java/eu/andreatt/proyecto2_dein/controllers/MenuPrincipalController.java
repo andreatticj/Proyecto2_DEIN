@@ -289,7 +289,43 @@ public class MenuPrincipalController implements Initializable {
      */
     @FXML
     void actionAgregarAlumno(ActionEvent event) {
+        try {
+            //Multilingue
+            String idioma = Propiedades.getValor("idioma");
+            String region = Propiedades.getValor("region");
+            Locale.setDefault(new Locale(idioma, region));
+            ResourceBundle bundle = ResourceBundle.getBundle("/eu/andreatt/proyecto2_dein/idiomas/messages");
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarAlumno.fxml"), bundle);
+            Parent root = loader.load();
+
+            //Creación del controlador
+            AgregarAlumnoController cargarControllerAlumno = loader.getController();
+            //le pasamos el observableList para que al modificarlo, se actualice solo
+            cargarControllerAlumno.initAttributtes(alumnosExistentes);
+
+            //Escena principal
+            Scene scene = new Scene(root, 392, 294);
+
+            Stage newStage = new Stage();
+            scene.getStylesheets().add(getClass().getResource("/eu/andreatt/proyecto2_dein/css/application.css").toExternalForm());
+            newStage.setTitle(bundle.getString("labelAgregarAlumno"));
+            newStage.setResizable(false);
+            newStage.setScene(scene);
+
+            //Modal
+            newStage.initModality(Modality.APPLICATION_MODAL);
+
+            //Logo
+            Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/alumno.png"));
+            newStage.getIcons().add(icon);
+
+            newStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            generarVentana(Alert.AlertType.ERROR, bundle.getString("agregarAlumnoIncorrecto"), "ERROR");
+        }
     }
 
     @FXML
@@ -334,6 +370,11 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     void actionBotonHistoricoPrestamo(ActionEvent event) {
+        labelTablaActual.setText(bundle.getString("labelHistorico"));
+        labelFiltro.setText(bundle.getString("filtroHistorico"));
+        labelFiltroHistorico.setText(bundle.getString("filtroHistoricoIzquierda"));
+        labelFiltroHistorico2.setText(bundle.getString("filtroHistoricoCentro"));
+
         ocultarTablas();
         tableHistoricoPrestamo.setVisible(true);
 
@@ -345,6 +386,9 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     void actionBotonLibro(ActionEvent event) {
+        labelTablaActual.setText(bundle.getString("labelLibro"));
+        labelFiltro.setText(bundle.getString("filtroLibro"));
+
         ocultarTablas();
         tableLibro.setVisible(true);
 
@@ -356,6 +400,9 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     void actionBotonPrestamo(ActionEvent event) {
+        labelTablaActual.setText(bundle.getString("labelPrestamo"));
+        labelFiltro.setText(bundle.getString("filtroPrestamo"));
+
         ocultarTablas();
         tablePrestamo.setVisible(true);
 
@@ -365,7 +412,51 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     void actionEditarAlumno(ActionEvent event) {
+        //Alumno Seleccionado
+        Alumno itemSeleccionado = tableAlumno.getSelectionModel().getSelectedItem();
 
+        if(itemSeleccionado!=null) {
+            try {
+                //Multilingue
+                String idioma = Propiedades.getValor("idioma");
+                String region = Propiedades.getValor("region");
+                Locale.setDefault(new Locale(idioma, region));
+                ResourceBundle bundle = ResourceBundle.getBundle("/eu/andreatt/proyecto2_dein/idiomas/messages");
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarAlumno.fxml"),bundle);
+                Parent root = loader.load();
+
+                //Creación del controlador
+                AgregarAlumnoController cargarControllerAlumno = loader.getController();
+
+                //Enviar datos necesarios para que se actualice solo
+                Alumno alumno = tableAlumno.getSelectionModel().getSelectedItem();
+                cargarControllerAlumno.initAttributtes(alumnosExistentes, alumno);
+
+                //Escena principal
+                Scene scene = new Scene(root,392,294);
+
+                Stage newStage = new Stage();
+                scene.getStylesheets().add(getClass() .getResource("/eu/andreatt/proyecto2_dein/css/application.css").toExternalForm());
+                newStage.setTitle(bundle.getString("labelEditarAlumno"));
+                newStage.setResizable(false);
+                newStage.setScene(scene);
+
+                //Modal
+                newStage.initModality(Modality.APPLICATION_MODAL);
+
+                //Logo
+                Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/alumno.png"));
+                newStage.getIcons().add(icon);
+
+                newStage.showAndWait();
+
+            } catch(Exception e) {
+                generarVentana(Alert.AlertType.ERROR, bundle.getString("editarAlumnoIncorrecto"), "ERROR");
+            }
+        }else {
+            generarVentana(Alert.AlertType.ERROR, bundle.getString("editarAlumnoIncorrecto"), "ERROR");
+        }
     }
 
     @FXML
