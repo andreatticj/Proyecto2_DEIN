@@ -333,9 +333,49 @@ public class MenuPrincipalController implements Initializable {
 
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón para agregar un nuevo libro.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionAgregarLibro(ActionEvent event) {
+            try {
+                //Multilingue
+                String idioma = Propiedades.getValor("idioma");
+                String region = Propiedades.getValor("region");
+                Locale.setDefault(new Locale(idioma, region));
+                ResourceBundle bundle = ResourceBundle.getBundle("/eu/andreatt/proyecto2_dein/idiomas/messages");
 
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarLibro.fxml"),bundle);
+                Parent root = loader.load();
+
+                //Creación del controlador
+                AgregarLibroController cargarControllerLibro = loader.getController();
+                //le pasamos el observableList para que al modificarlo, se actualice solo
+                cargarControllerLibro.initAttributtes(librosExistentes);
+
+                //Escena principal
+                Scene scene = new Scene(root,392,340);
+
+                Stage newStage = new Stage();
+                scene.getStylesheets().add(getClass() .getResource("/eu/andreatt/proyecto2_dein/css/application.css").toExternalForm());
+                newStage.setTitle(bundle.getString("labelAgregarLibro"));
+                newStage.setResizable(false);
+                newStage.setScene(scene);
+
+                //Modal
+                newStage.initModality(Modality.APPLICATION_MODAL);
+
+                //Logo
+                Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/libro.png"));
+                newStage.getIcons().add(icon);
+
+                newStage.showAndWait();
+
+            } catch(Exception e) {
+                generarVentana(Alert.AlertType.ERROR, bundle.getString("agregarLibroIncorrecto"), "ERROR");
+            }
     }
 
     @FXML
@@ -348,9 +388,20 @@ public class MenuPrincipalController implements Initializable {
 
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón para borrar un libro existente.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionBorrarLibro(ActionEvent event) {
-
+        //Libro Seleccionado
+        Libro itemSeleccionado = tableLibro.getSelectionModel().getSelectedItem();
+        if(itemSeleccionado!=null) {
+            libroDao.darDeBajaLibro(itemSeleccionado.getCodigo());
+            librosExistentes.remove(itemSeleccionado);
+            generarVentana(Alert.AlertType.INFORMATION, bundle.getString("borrarLibroCorrecto"), "INFO");
+        }
     }
 
     @FXML
@@ -410,6 +461,11 @@ public class MenuPrincipalController implements Initializable {
         botonAgregarPrestamo.setVisible(true);
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón para editar un alumno.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionEditarAlumno(ActionEvent event) {
         //Alumno Seleccionado
@@ -459,9 +515,58 @@ public class MenuPrincipalController implements Initializable {
         }
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón para editar un libro.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionEditarLibro(ActionEvent event) {
+        //Libro Seleccionado
+        Libro itemSeleccionado = tableLibro.getSelectionModel().getSelectedItem();
 
+        if(itemSeleccionado!=null) {
+            try {
+                //Multilingue
+                String idioma = Propiedades.getValor("idioma");
+                String region = Propiedades.getValor("region");
+                Locale.setDefault(new Locale(idioma, region));
+                ResourceBundle bundle = ResourceBundle.getBundle("/eu/andreatt/proyecto2_dein/idiomas/messages");
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarLibro.fxml"),bundle);
+                Parent root = loader.load();
+
+                //Creación del controlador
+                AgregarLibroController cargarControllerLibro = loader.getController();
+
+                //Enviar datos necesarios para que se actualice solo
+                Libro libro = tableLibro.getSelectionModel().getSelectedItem();
+                cargarControllerLibro.initAttributtes(librosExistentes, libro);
+
+                //Escena principal
+                Scene scene = new Scene(root,392,340);
+
+                Stage newStage = new Stage();
+                scene.getStylesheets().add(getClass() .getResource("/eu/andreatt/proyecto2_dein/css/application.css").toExternalForm());
+                newStage.setTitle(bundle.getString("labelEditarLibro"));
+                newStage.setResizable(false);
+                newStage.setScene(scene);
+
+                //Modal
+                newStage.initModality(Modality.APPLICATION_MODAL);
+
+                //Logo
+                Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/libro.png"));
+                newStage.getIcons().add(icon);
+
+                newStage.showAndWait();
+
+            } catch(Exception e) {
+                generarVentana(Alert.AlertType.ERROR, bundle.getString("editarLibroIncorrecto"), "ERROR");
+            }
+        }else {
+            generarVentana(Alert.AlertType.ERROR, bundle.getString("editarLibroIncorrecto"), "ERROR");
+        }
     }
 
     @FXML

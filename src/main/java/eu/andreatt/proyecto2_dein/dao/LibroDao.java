@@ -145,7 +145,7 @@ public class LibroDao {
     public boolean insertarLibro(Integer codigo, String titulo, String autor, String editorial, String estado, Integer baja) {
         try {
             conexion = new ConexionBD();
-            String consulta = "INSERT INTO libro (codigo, titulo, autor, editorial, estado, baja) VALUES (?, ?, ?, ?, ?, ?)";
+            String consulta = "INSERT INTO Libro (codigo, titulo, autor, editorial, estado, baja) VALUES (?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta)) {
                 pstmt.setInt(1, codigo);
@@ -189,7 +189,7 @@ public class LibroDao {
     public boolean actualizarLibro(Integer codigo, String titulo, String autor, String editorial, String estado, Integer baja) {
         try {
             conexion = new ConexionBD();
-            String consulta = "UPDATE libro SET titulo = ?, autor = ?, editorial = ?, estado = ?, baja = ? WHERE codigo = ?";
+            String consulta = "UPDATE Libro SET titulo = ?, autor = ?, editorial = ?, estado = ?, baja = ? WHERE codigo = ?";
 
             try (PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta)) {
                 pstmt.setString(1, titulo);
@@ -229,7 +229,7 @@ public class LibroDao {
     public boolean actualizarLibroEstado(Integer codigo, String estado) {
         try {
             conexion = new ConexionBD();
-            String consulta = "UPDATE libro SET estado = ? WHERE codigo = ?";
+            String consulta = "UPDATE Libro SET estado = ? WHERE codigo = ?";
 
             try (PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta)) {
                 pstmt.setString(1, estado);
@@ -264,7 +264,7 @@ public class LibroDao {
     public boolean darDeBajaLibro(int codigoLibro) {
         try {
             conexion = new ConexionBD();
-            String consulta = "UPDATE libro SET baja = 1 WHERE codigo = ?";
+            String consulta = "UPDATE Libro SET baja = 1 WHERE codigo = ?";
 
             try (PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta)) {
                 pstmt.setInt(1, codigoLibro);
@@ -298,7 +298,7 @@ public class LibroDao {
     public boolean existeLibro(Integer codigo) {
         try {
             conexion = new ConexionBD();
-            String consulta = "SELECT COUNT(*) FROM libro WHERE codigo = ?";
+            String consulta = "SELECT COUNT(*) FROM Libro WHERE codigo = ?";
 
             try (PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta)) {
                 pstmt.setInt(1, codigo);
