@@ -419,7 +419,42 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     void actionAgregarPrestamo(ActionEvent event) {
+        try {
+            //Multilingue
+            String idioma = Propiedades.getValor("idioma");
+            String region = Propiedades.getValor("region");
+            Locale.setDefault(new Locale(idioma, region));
+            ResourceBundle bundle = ResourceBundle.getBundle("/eu/andreatt/proyecto2_dein/idiomas/messages");
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarPrestamo.fxml"), bundle);
+            Parent root = loader.load();
+
+            //Creación del controlador
+            AgregarPrestamoController cargarControllerPrestamo = loader.getController();
+            //le pasamos el observableList para que al modificarlo, se actualice solo
+            cargarControllerPrestamo.initAttributtes(prestamosExistentes);
+
+            //Escena principal
+            Scene scene = new Scene(root, 392, 340);
+
+            Stage newStage = new Stage();
+            scene.getStylesheets().add(getClass().getResource("/eu/andreatt/proyecto2_dein/css/application.css").toExternalForm());
+            newStage.setTitle(bundle.getString("labelAgregarPrestamo"));
+            newStage.setResizable(false);
+            newStage.setScene(scene);
+
+            //Modal
+            newStage.initModality(Modality.APPLICATION_MODAL);
+
+            //Logo
+            Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/prestamo.png"));
+            newStage.getIcons().add(icon);
+
+            newStage.showAndWait();
+
+        } catch (Exception e) {
+            generarVentana(Alert.AlertType.ERROR, bundle.getString("agregarPrestamoIncorrecto"), "ERROR");
+        }
     }
 
     @FXML

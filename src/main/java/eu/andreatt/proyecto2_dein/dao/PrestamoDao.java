@@ -102,7 +102,7 @@ public class PrestamoDao {
     public boolean insertarPrestamo(int idPrestamo, String dniAlumno, int codigoLibro, Date fechaPrestamo) {
         try {
             conexion = new ConexionBD();
-            String consulta = "INSERT INTO prestamo (id_prestamo, dni_alumno, codigo_libro, fecha_prestamo) VALUES (?, ?, ?, ?)";
+            String consulta = "INSERT INTO Prestamo (id_prestamo, dni_alumno, codigo_libro, fecha_prestamo) VALUES (?, ?, ?, ?)";
 
             try (PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta)) {
                 pstmt.setInt(1, idPrestamo);
@@ -214,7 +214,7 @@ public class PrestamoDao {
     public int dameMaxIdPrestamo() {
         try {
             conexion = new ConexionBD();
-            String consulta = "SELECT MAX(id_prestamo) AS max_id FROM prestamo";
+            String consulta = "SELECT MAX(id_prestamo) AS max_id FROM Prestamo";
             PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
 
             ResultSet rs = pstmt.executeQuery();
