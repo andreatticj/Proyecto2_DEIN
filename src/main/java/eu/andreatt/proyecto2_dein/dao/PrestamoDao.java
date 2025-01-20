@@ -45,12 +45,8 @@ public class PrestamoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return prestamo;
@@ -79,12 +75,8 @@ public class PrestamoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return id;
@@ -119,12 +111,8 @@ public class PrestamoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return false;
@@ -152,12 +140,8 @@ public class PrestamoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
 
@@ -194,12 +178,8 @@ public class PrestamoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
 
@@ -228,12 +208,8 @@ public class PrestamoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return -1;

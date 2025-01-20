@@ -1,6 +1,7 @@
 package eu.andreatt.proyecto2_dein.controllers;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 
+import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
 import eu.andreatt.proyecto2_dein.dao.AlumnoDao;
 import eu.andreatt.proyecto2_dein.dao.LibroDao;
 import eu.andreatt.proyecto2_dein.dao.PrestamoDao;
@@ -23,6 +25,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class AgregarPrestamoController implements Initializable {
 
@@ -47,6 +54,7 @@ public class AgregarPrestamoController implements Initializable {
     private ResourceBundle bundle;
 
     private ObservableList<Prestamo> prestamosExistentes;
+    private ConexionBD conexionBD;
 
     /**
      * Inicializa la clase con el URL y ResourceBundle.
@@ -58,6 +66,9 @@ public class AgregarPrestamoController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         // Instanciar bundle para idiomas
         bundle = arg1;
+
+        // Inicializar conexión a la base de datos
+        conexionBD = new ConexionBD();
 
         // Cargar códigos de libros
         LibroDao libroDao = new LibroDao();
@@ -132,9 +143,7 @@ public class AgregarPrestamoController implements Initializable {
             Stage stage = (Stage) botonCancelar.getScene().getWindow();
             stage.close();
 
-            // Generar informe en pdf
-            Map<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put("ID_PRESTAMO", Integer.parseInt(textFieldIdPrestamo.getText()));
+            cargarReporte("/eu/andreatt/proyecto2_dein/jasper/Informe1.jrxml");
         }
 
     }
@@ -174,4 +183,36 @@ public class AgregarPrestamoController implements Initializable {
 
         return errores;
     }
+
+    /**
+     * Función genérica para cargar y mostrar un archivo JRXML.
+     *
+     * @param reportPath Ruta relativa del archivo JRXML dentro del classpath.
+     */
+    private void cargarReporte(String reportPath) {
+        try {
+            // Compila el archivo JRXML
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream(reportPath));
+
+            // Obtiene la conexión a la base de datos
+            Connection conn = conexionBD.getConexion();
+
+            // Parámetros que se pasarán al reporte Jasper
+            Map<String, Object> parameters = new HashMap<>();
+            String imageBasePath = getClass().getResource("/eu/andreatt/proyecto2_dein/images/").toString();
+            parameters.put("REPORT_IMAGE", imageBasePath);
+            parameters.put("ID_PRESTAMO", Integer.parseInt(textFieldIdPrestamo.getText()));
+
+            // Llena el informe con los datos y los parámetros
+            JasperPrint jprint = JasperFillManager.fillReport(report, parameters, conn);
+
+            // Muestra el informe
+            JasperViewer viewer = new JasperViewer(jprint, false);
+            viewer.setVisible(true);
+        } catch (Exception e) {
+            generarVentana(Alert.AlertType.ERROR, "Ha ocurrido un error al abrir el reporte", "ERROR");
+            e.printStackTrace();
+        }
+    }
+
 }
