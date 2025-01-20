@@ -45,12 +45,8 @@ public class HistoricoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return historico;
@@ -87,12 +83,8 @@ public class HistoricoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
 
@@ -121,12 +113,8 @@ public class HistoricoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return -1;

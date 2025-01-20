@@ -45,12 +45,8 @@ public class LibroDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return libro;
@@ -85,12 +81,8 @@ public class LibroDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return libro;
@@ -120,12 +112,8 @@ public class LibroDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return codigos;
@@ -164,12 +152,8 @@ public class LibroDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return false;
@@ -208,12 +192,8 @@ public class LibroDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return false;
@@ -244,12 +224,8 @@ public class LibroDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return false;
@@ -278,12 +254,8 @@ public class LibroDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return false;
@@ -314,12 +286,8 @@ public class LibroDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
         return false;
@@ -358,12 +326,8 @@ public class LibroDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (conexion != null) {
-                    conexion.closeConnection();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (conexion != null) {
+                conexion.closeConnection();
             }
         }
 

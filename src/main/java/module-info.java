@@ -5,6 +5,7 @@ module eu.andreatt.proyecto2_dein {
     requires javafx.base;
     requires java.sql;
     requires javafx.web;
+    requires jasperreports;
 
     // Exportar paquetes necesarios
     exports eu.andreatt.proyecto2_dein.application to javafx.graphics;
