@@ -29,7 +29,7 @@ public class ConexionBD {
             String user = Propiedades.getValor("user");
             String password = Propiedades.getValor("password");
 
-            System.out.println("Conectando a la base de datos con URL: " + url + ", Usuario: " + user);
+            //System.out.println("Conectando a la base de datos con URL: " + url + ", Usuario: " + user);
             conexion = DriverManager.getConnection(url, user, password);
             conexion.setAutoCommit(true);
         } catch (SQLException e) {
@@ -54,7 +54,7 @@ public class ConexionBD {
         if (conexion != null) {
             try {
                 conexion.close();
-                System.out.println("Conexión cerrada correctamente.");
+                //System.out.println("Conexión cerrada correctamente.");
             } catch (SQLException e) {
                 generarVentanaAlerta("Error al cerrar la conexión", e.getMessage());
                 e.printStackTrace();
