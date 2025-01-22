@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe4" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6e4db4-9f8f-4ffe-9759-6e1fd142f492">
+	<property name="template.type" value="columnar"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Contra Docker Local - PROYECTO"/>
+	<style name="Title" forecolor="#000000" fontName="Arial" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Arial"/>
+	<style name="Row" mode="Transparent" fontName="Arial" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="REPORT_IMAGE" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT Alumno.*,
+COUNT(Historico_prestamo.id_prestamo) AS prestamos,
+AVG(DATEDIFF(Historico_prestamo.fecha_devolucion, Historico_prestamo.fecha_prestamo)) AS promedio_dias,
+SUM(DATEDIFF(Historico_prestamo.fecha_devolucion, Historico_prestamo.fecha_prestamo)) AS total_dias
+FROM Alumno
+INNER JOIN Historico_prestamo ON Historico_prestamo.dni_alumno = Alumno.dni
+GROUP BY Alumno.dni]]>
+	</queryString>
+	<field name="dni" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dni"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="apellido1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="apellido2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido2"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Alumno"/>
+	</field>
+	<field name="prestamos" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="prestamos"/>
+		<property name="com.jaspersoft.studio.field.label" value="prestamos"/>
+	</field>
+	<field name="promedio_dias" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="promedio_dias"/>
+		<property name="com.jaspersoft.studio.field.label" value="promedio_dias"/>
+	</field>
+	<field name="total_dias" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="total_dias"/>
+		<property name="com.jaspersoft.studio.field.name" value="total_dias"/>
+	</field>
+	<variable name="total_dias_libros" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_dias}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_prestamos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{prestamos}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="promedio_total_dias" class="java.math.BigDecimal" calculation="Average">
+		<variableExpression><![CDATA[$F{promedio_dias}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{dni}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#25E6DF" backcolor="#05B8FF" uuid="d8de62c1-c7b7-4da8-8c69-000abeaa2cc0"/>
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="1" width="552" height="23" forecolor="#030303" backcolor="#030303" uuid="25f707ae-9ac7-48d3-b45f-b14ee85fae9a"/>
+						<textElement>
+							<font isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nombre} + " " + $F{apellido1} + " " + $F{apellido2}+ " - " + $F{dni}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
+	</group>
+	<group name="apellido1">
+		<groupExpression><![CDATA[$F{apellido1}]]></groupExpression>
+	</group>
+	<group name="apellido2">
+		<groupExpression><![CDATA[$F{apellido2}]]></groupExpression>
+	</group>
+	<group name="prestamos">
+		<groupExpression><![CDATA[$F{prestamos}]]></groupExpression>
+	</group>
+	<group name="promedio_dias">
+		<groupExpression><![CDATA[$F{promedio_dias}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="bec0bd2c-932f-404c-8625-ed8c9a1e5e4e"/>
+				<staticText>
+					<reportElement style="Title" mode="Transparent" x="0" y="0" width="451" height="95" forecolor="#FFFFFF" uuid="17a7d17c-6ea9-49f0-9bf9-45e71c4ec143"/>
+					<textElement textAlignment="Center">
+						<font size="40" isBold="false"/>
+					</textElement>
+					<text><![CDATA[DATOS PRESTAMOS ALUMNOS]]></text>
+				</staticText>
+			</frame>
+			<image>
+				<reportElement x="454" y="6" width="99" height="89" uuid="02625d73-1b0c-4de9-bae7-ab43887613b7"/>
+				<imageExpression><![CDATA[$P{REPORT_IMAGE}+"logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="145" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="4" y="130" width="551" height="1" forecolor="#2B0548" uuid="5e41185f-9c90-45ca-839b-e28b308c1430"/>
+			</line>
+			<textField>
+				<reportElement x="290" y="10" width="140" height="30" forecolor="#2B0548" uuid="f13d8294-ee5b-453f-be19-fe350f7fd7ae"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_dias}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="130" y="10" width="150" height="30" uuid="d0a5c145-b93f-458e-9a71-80fe4739bfc8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[DÍAS DE PRÉSTAMO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="50" width="140" height="30" forecolor="#2B0548" uuid="11b0f839-f9d5-4c5b-986c-7d0432657102"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prestamos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="130" y="50" width="150" height="30" uuid="307a16a8-0a59-4001-a1bf-ed5d35852f4b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[LIBROS PRESTADOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="90" width="150" height="30" uuid="6dc4e086-bc7d-4a1f-b1d0-8d76bd276643"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[PROMEDIO DE DÍAS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="90" width="140" height="30" forecolor="#2B0548" uuid="29ef09c3-7f6e-4d22-b8ca-43da44b7ed95"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.2f", $F{promedio_dias})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fab082df-3ca0-43ac-900e-4da3f8b5a45d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="7dd7c45d-0ccb-43c2-96fa-8844436afd85"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="d16b70f2-8289-4882-bcd8-b8b7a41f5dc6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="d64c1976-b712-4b81-b7cc-e368794becdf"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="73dea25d-babc-4c2b-8bd6-0481495bbb16"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="167" splitType="Stretch">
+			<staticText>
+				<reportElement x="134" y="40" width="146" height="30" uuid="107f5b8b-b929-40e6-890d-df6e154a05a7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[LIBROS PRESTADOS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="295" y="40" width="140" height="30" forecolor="#2B0548" uuid="19220efc-e7f4-45dd-9b1e-52fb93f4a7b0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_prestamos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="134" y="80" width="146" height="30" uuid="b105a938-6e65-45b9-aa8f-e9e05f429b1e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[DÍAS DE PRÉSTAMO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="294" y="80" width="140" height="30" forecolor="#2B0548" uuid="99b4a712-3195-4cd2-a6ff-e7790792b8c7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_dias_libros}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="136" y="120" width="146" height="30" uuid="f5dfd00c-beba-4811-a8b9-9322f6e95065"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[PROMEDIO DE DÍAS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="295" y="120" width="140" height="30" forecolor="#2B0548" uuid="365bd063-d486-4cce-b205-61b99725dfc3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%.2f", $V{promedio_total_dias})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="84" y="0" width="390" height="30" forecolor="#2B0548" uuid="03abf2b6-daaf-4bf4-ae9f-4690d1b0aa39"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESGLOSE TOTAL DE LA LIBRERÍA]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

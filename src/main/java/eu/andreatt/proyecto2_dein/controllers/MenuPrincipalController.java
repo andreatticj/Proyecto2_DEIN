@@ -468,7 +468,7 @@ public class MenuPrincipalController implements Initializable {
 
     @FXML
     void actionAlumnosItem(ActionEvent event) {
-
+        cargarReporte("/eu/andreatt/proyecto2_dein/jasper/Informe4.jrxml");
     }
 
     /**
