@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subinforme3_3" pageWidth="590" pageHeight="250" columnWidth="550" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00943778-ec16-435d-a4ba-b2e04dce6961">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Contra Docker Local - PROYECTO"/>
+	<style name="Style1"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+        DATE_FORMAT(mes.mes, '%Y-%m') AS mes, 
+        COALESCE(COUNT(h.fecha_prestamo), 0) AS total_prestamos
+    FROM 
+        (SELECT 
+            DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL n MONTH), '%Y-%m-01') AS mes
+         FROM 
+            (SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3) AS numbers) AS mes
+    LEFT JOIN 
+        Historico_prestamo h ON DATE_FORMAT(h.fecha_prestamo, '%Y-%m') = DATE_FORMAT(mes.mes, '%Y-%m')
+    WHERE 
+        mes.mes >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 3 MONTH), '%Y-%m-01')
+    GROUP BY 
+        mes.mes
+    ORDER BY 
+        mes.mes ASC]]>
+	</queryString>
+	<field name="mes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="mes"/>
+		<property name="com.jaspersoft.studio.field.label" value="mes"/>
+	</field>
+	<field name="total_prestamos" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="total_prestamos"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_prestamos"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="180" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="-10" y="-12" width="540" height="192" uuid="ded36556-a6eb-4224-88ad-a41e256afdde"/>
+					<chartTitle>
+						<font size="14"/>
+						<titleExpression><![CDATA["Tendencia de préstamos por mes"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Préstamos mes"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{total_prestamos}]]></valueExpression>
+						<labelExpression><![CDATA[$F{mes}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

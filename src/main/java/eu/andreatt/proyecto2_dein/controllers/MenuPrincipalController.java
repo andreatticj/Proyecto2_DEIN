@@ -289,9 +289,14 @@ public class MenuPrincipalController implements Initializable {
         tableHistoricoPrestamo.setContextMenu(crearContextMenu(entidadesHistorico, accionesHistorico));
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón "Acerca De" en el menú.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionAcercaDe(ActionEvent event) {
-
+        generarVentana(Alert.AlertType.INFORMATION, "Prestamos de libros\n Autor: Andrea Tortosa Tardio", "INFO");
     }
 
     /**
@@ -340,6 +345,11 @@ public class MenuPrincipalController implements Initializable {
         }
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón para agregar un nuevo histórico o devolución.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionAgregarHistoricoPrestamo(ActionEvent event) {
         try {
@@ -426,6 +436,11 @@ public class MenuPrincipalController implements Initializable {
         }
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón para agregar un nuevo prestámo.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionAgregarPrestamo(ActionEvent event) {
         try {
@@ -466,6 +481,11 @@ public class MenuPrincipalController implements Initializable {
         }
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón "Listado de Alumnos" en el menú.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionAlumnosItem(ActionEvent event) {
         cargarReporte("/eu/andreatt/proyecto2_dein/jasper/Informe4.jrxml");
@@ -487,6 +507,11 @@ public class MenuPrincipalController implements Initializable {
         }
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón correspondiente a la tabla Alumnos.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionBotonAlumno(ActionEvent event) {
         labelTablaActual.setText(bundle.getString("labelAlumno"));
@@ -502,6 +527,11 @@ public class MenuPrincipalController implements Initializable {
         botonEditarAlumno.setVisible(true);
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón correspondiente a la tabla Historico Prestámos o devoluciones.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionBotonHistoricoPrestamo(ActionEvent event) {
         labelTablaActual.setText(bundle.getString("labelHistorico"));
@@ -518,6 +548,11 @@ public class MenuPrincipalController implements Initializable {
         labelFiltroHistorico2.setVisible(true);
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón correspondiente a la tabla Libro.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionBotonLibro(ActionEvent event) {
         labelTablaActual.setText(bundle.getString("labelLibro"));
@@ -532,6 +567,11 @@ public class MenuPrincipalController implements Initializable {
         botonBorrarLibro.setVisible(true);
     }
 
+    /**
+     * Evento que se ejecuta al pulsar el botón correspondiente a la tabla Prestamos.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionBotonPrestamo(ActionEvent event) {
         labelTablaActual.setText(bundle.getString("labelPrestamo"));
@@ -652,16 +692,49 @@ public class MenuPrincipalController implements Initializable {
         }
     }
 
+    /**
+     * Evento que se ejecuta al pulsar la opción "Gráfico de Prestámos" en el menú.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionGraficoPrestamos(ActionEvent event) {
-
+        cargarReporte("/eu/andreatt/proyecto2_dein/jasper/Informe3.jrxml");
     }
 
     @FXML
     void actionGuiaRapida(ActionEvent event) {
+        try {
+            //Multilingue
+            String idioma = Propiedades.getValor("idioma");
+            String region = Propiedades.getValor("region");
+            Locale.setDefault(new Locale(idioma, region));
+            ResourceBundle bundle = ResourceBundle.getBundle("/eu/andreatt/proyecto2_dein/idiomas/messages");
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/VisorAyudaOffline.fxml"), bundle);
+            Parent root = loader.load();
+
+            //Escena principal
+            Scene scene = new Scene(root);
+
+            Stage newStage = new Stage();
+            newStage.setTitle(bundle.getString("tituloAyudaOffline"));
+            newStage.setResizable(false);
+            newStage.setScene(scene);
+            newStage.setResizable(false);
+            newStage.show();
+
+        } catch (Exception e) {
+            generarVentana(Alert.AlertType.ERROR, bundle.getString("errorAyudaOffline"), "ERROR");
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Evento que se ejecuta al pulsar la opción "Listado de Libros" en el menú.
+     *
+     * @param event Evento de pulsar el botón.
+     */
     @FXML
     void actionListadoLibros(ActionEvent event) {
         cargarReporte("/eu/andreatt/proyecto2_dein/jasper/Informe2.jrxml");

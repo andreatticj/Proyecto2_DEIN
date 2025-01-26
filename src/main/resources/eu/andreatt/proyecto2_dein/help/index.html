@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index 1</title>
+    <style>
+        body {
+			background-color:#e6e6e6;
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+		
+		.grande{
+			font-size:150%;
+		}
+		
+		.divi {
+			background-color: #c2c2c2;
+			border-radius: 10px;
+			padding: 10px;
+			margin-bottom: 20px;
+		}
+		
+
+		
+		span[color="colorTitulo"] {
+            color: purple;
+        }
+		span[color="colorAlumno"] {
+            color: red;
+        }
+		span[color="colorLibro"] {
+            color: green;
+        }
+		span[color="colorPrestamo"] {
+            color: blue;
+        }
+		span[color="colorHistorico"] {
+            color: #009688;
+        }
+
+        aside {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1><span color="colorTitulo">PRÉSTAMO DE LIBROS</span></h1>
+    
+    <div>
+        <div class="divi">
+			<h3 class="grande"><span color="colorAlumno">Alumno</span></h3>
+			<p>
+				<strong>ATRIBUTOS:</strong> <span color="colorAlumno"><strong>Dni</strong></span>, Nombre, Primer Apellido, Segundo Apellido
+			</p>
+			<p>
+				Un alumno es el usuario que realiza el préstamo de uno o varios libros.
+			</p>
+        </div>
+		
+		<div class="divi">
+			<h3 class="grande"><span color="colorLibro">Libro</span></h3>
+			<p>
+				<strong>ATRIBUTOS:</strong> <span color="colorLibro"><strong>Código</strong></span>, Título, Autor, Editorial, Estado, Baja, Portada
+			</p>
+			<p>
+				Un libro es prestado a uno o varios alumnos.
+			</p>
+        </div>
+		
+		<div class="divi">
+			<h3 class="grande"><span color="colorPrestamo">Préstamo</span></h3>
+			<p>
+				<strong>ATRIBUTOS:</strong> <span color="colorPrestamo"><strong>Id_prestamo</strong></span>, <span color="colorAlumno">Dni_Alumno</span>, <span color="colorLibro">Código_Libro</span>, Fecha Préstamo
+			</p>
+			<p>
+				Un préstamo se realiza entre un alumno y un libro, pudiendo hacer varios préstamos simultaneamente.
+			</p>
+        </div>
+		
+		<div class="divi">
+			<h3 class="grande"><span color="colorHistorico">Histórico de Préstamos</span></h3>
+			<p>
+				<strong>ATRIBUTOS:</strong> <span color="colorHistorico"><strong>Id_prestamo</strong></span>, <span color="colorAlumno">Dni_Alumno</span>, <span color="colorLibro">Código_Libro</span>, Fecha Préstamo, Fecha Devolución
+			</p>
+			<p>
+				El histórico de prestamos registra todos los préstamos realizados. 
+			</p>
+        </div>
+    </div>
+</body>
+</html>

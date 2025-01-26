@@ -46,7 +46,7 @@ public class VisorAyudaOfflineController implements Initializable {
 
         // Mostramos el contenido inicial en el visor de la derecha
         webEngine = visor.getEngine();
-        webEngine.load(getClass().getResource("/help/index.html").toExternalForm());
+        webEngine.load(getClass().getResource("/eu/andreatt/proyecto2_dein/help/index.html").toExternalForm());
 
         // Añadimos un evento para cambiar de html al pinchar en el árbol
         arbol.setOnMouseClicked(e -> {
@@ -68,7 +68,7 @@ public class VisorAyudaOfflineController implements Initializable {
     private void loadHelp(String file, boolean local) {
         if (visor != null) {
             if (local) {
-                webEngine.load(getClass().getResource("/help/" + file).toExternalForm());
+                webEngine.load(getClass().getResource("/eu/andreatt/proyecto2_dein/help/" + file).toExternalForm());
             } else {
                 webEngine.load(file);
             }

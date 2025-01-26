@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe3_1" pageWidth="590" pageHeight="250" columnWidth="570" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="9139dabc-614b-4ff5-acd7-f548b2473558">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Contra Docker Local - PROYECTO"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+            libros.`Historico_prestamo`.codigo_libro,
+            libros.`Libro`.titulo,
+            libros.`Libro`.autor,
+            libros.`Libro`.editorial,
+            COUNT(libros.`Historico_prestamo`.codigo_libro) AS veces_prestado
+        FROM 
+            libros.`Historico_prestamo`
+        INNER JOIN 
+            libros.`Libro` 
+        ON 
+            libros.`Historico_prestamo`.codigo_libro = libros.`Libro`.codigo
+        GROUP BY 
+            libros.`Historico_prestamo`.codigo_libro, 
+            libros.`Libro`.titulo, 
+            libros.`Libro`.autor, 
+            libros.`Libro`.editorial]]>
+	</queryString>
+	<field name="codigo_libro" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="codigo_libro"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo_libro"/>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="titulo"/>
+		<property name="com.jaspersoft.studio.field.label" value="titulo"/>
+	</field>
+	<field name="autor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="autor"/>
+		<property name="com.jaspersoft.studio.field.label" value="autor"/>
+	</field>
+	<field name="editorial" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="editorial"/>
+		<property name="com.jaspersoft.studio.field.label" value="editorial"/>
+	</field>
+	<field name="veces_prestado" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="veces_prestado"/>
+		<property name="com.jaspersoft.studio.field.label" value="veces_prestado"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="230">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="-10" y="-10" width="565" height="240" uuid="21e48728-22bf-40bd-9a79-3d8dce3dd98c">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<chartTitle>
+						<font size="14"/>
+						<titleExpression><![CDATA["Veces que se ha prestado un libro"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Préstamos"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{titulo}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{veces_prestado}]]></valueExpression>
+						<labelExpression><![CDATA[$F{titulo}+" ("+$F{veces_prestado}+")"]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>
