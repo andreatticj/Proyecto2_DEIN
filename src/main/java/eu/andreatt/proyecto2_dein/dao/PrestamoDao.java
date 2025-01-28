@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
 import eu.andreatt.proyecto2_dein.model.Prestamo;
@@ -16,6 +17,7 @@ import javafx.collections.ObservableList;
  */
 public class PrestamoDao {
 
+    private static final Logger LOGGER = Logger.getLogger(PrestamoDao.class.getName()); // Logger instance
     private ConexionBD conexion;
 
     /**
@@ -42,8 +44,11 @@ public class PrestamoDao {
             rs.close();
             conexion.closeConnection();
 
+            // Log successful load
+            LOGGER.info("Lista de préstamos cargada correctamente.");
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al cargar la lista de préstamos: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -72,8 +77,11 @@ public class PrestamoDao {
             rs.close();
             conexion.closeConnection();
 
+            // Log successful load
+            LOGGER.info("Lista de IDs de préstamos cargada correctamente.");
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al cargar los IDs de préstamos: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -85,9 +93,9 @@ public class PrestamoDao {
     /**
      * Inserta un nuevo préstamo en la base de datos.
      *
-     * @param idPrestamo   ID del préstamo.
-     * @param dniAlumno    DNI del alumno.
-     * @param codigoLibro  Código del libro prestado.
+     * @param idPrestamo    ID del préstamo.
+     * @param dniAlumno     DNI del alumno.
+     * @param codigoLibro   Código del libro prestado.
      * @param fechaPrestamo Fecha de préstamo.
      * @return `true` si la inserción fue exitosa, `false` en caso contrario.
      */
@@ -106,10 +114,11 @@ public class PrestamoDao {
             }
 
             conexion.closeConnection();
+            LOGGER.info("Prestamo insertado correctamente: " + idPrestamo);
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al insertar préstamo: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -135,10 +144,11 @@ public class PrestamoDao {
             }
 
             conexion.closeConnection();
+            LOGGER.info("Prestamo borrado correctamente: " + id_prestamo);
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al borrar préstamo: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -175,8 +185,11 @@ public class PrestamoDao {
                 }
             }
 
+            // Log successful load
+            LOGGER.info("Prestamo cargado correctamente: " + id_prestamo);
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al cargar préstamo por ID: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -200,13 +213,15 @@ public class PrestamoDao {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("max_id");
+                int maxId = rs.getInt("max_id");
+                LOGGER.info("El ID máximo de préstamo es: " + maxId);
+                return maxId;
             }
 
             rs.close();
             conexion.closeConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al obtener el ID máximo de préstamo: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();

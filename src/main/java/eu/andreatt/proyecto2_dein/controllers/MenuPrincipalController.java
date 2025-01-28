@@ -35,8 +35,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MenuPrincipalController implements Initializable {
+
+    private static final Logger LOGGER = Logger.getLogger(MenuPrincipalController.class.getName());
 
     @FXML
     private Button botonAgregarAlumno;
@@ -173,7 +178,6 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private TextField textFieldFiltroHistorico2;
 
-
     private AlumnoDao alumnoDao;
     private LibroDao libroDao;
     private PrestamoDao prestamoDao;
@@ -192,6 +196,15 @@ public class MenuPrincipalController implements Initializable {
     private ResourceBundle bundle;
     private ConexionBD conexionBD;
 
+    static {
+        try {
+            FileHandler fileHandler = new FileHandler("app.log", true);
+            LOGGER.addHandler(fileHandler);
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Error al configurar el logger", e);
+        }
+    }
+
     /**
      * Funcion de inicialización que se ejecuta al cargar la ventana.
      *
@@ -200,29 +213,24 @@ public class MenuPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        //Instanciar bundle para idiomas
+        LOGGER.info("Inicializando MenuPrincipalController");
         bundle = arg1;
-        // Inicializar conexión a la base de datos
         conexionBD = new ConexionBD();
-        //Instanciar Daos
         alumnoDao = new AlumnoDao();
         libroDao = new LibroDao();
         prestamoDao = new PrestamoDao();
         historicoDao = new HistoricoDao();
 
-        //Cargar Listas
         alumnosExistentes = alumnoDao.cargarAlumnos();
         librosExistentes = libroDao.cargarLibrosAlta();
         prestamosExistentes = prestamoDao.cargarPrestamos();
         historicosExistentes = historicoDao.cargarHistorico();
 
-        //Cargar columnas Alumnos
         columnDniAlumno.setCellValueFactory(new PropertyValueFactory<Alumno, String>("dni"));
         columnNombreAlumno.setCellValueFactory(new PropertyValueFactory<Alumno, String>("nombre"));
         columnApellido1Alumno.setCellValueFactory(new PropertyValueFactory<Alumno, String>("apellido1"));
         columnApellido2Alumno.setCellValueFactory(new PropertyValueFactory<Alumno, String>("apellido2"));
 
-        //Cargar columnas Libros
         columnCodigoLibro.setCellValueFactory(new PropertyValueFactory<Libro, Integer>("codigo"));
         columnTituloLibro.setCellValueFactory(new PropertyValueFactory<Libro, String>("titulo"));
         columnAutorLibro.setCellValueFactory(new PropertyValueFactory<Libro, String>("autor"));
@@ -230,26 +238,22 @@ public class MenuPrincipalController implements Initializable {
         columnEstadoLibro.setCellValueFactory(new PropertyValueFactory<Libro, String>("estado"));
         columnBajaLibro.setCellValueFactory(new PropertyValueFactory<Libro, Integer>("baja"));
 
-        //Cargar columnas Préstamos
         columnIdPrestamoPrestamo.setCellValueFactory(new PropertyValueFactory<Prestamo, Integer>("id_prestamo"));
         columnDniAlumnoPrestamo.setCellValueFactory(new PropertyValueFactory<Prestamo, String>("dni_alumno"));
         columnCodigoLibroPrestamo.setCellValueFactory(new PropertyValueFactory<Prestamo, Integer>("codigo_libro"));
         columnFechaPrestamoPrestamo.setCellValueFactory(new PropertyValueFactory<Prestamo, Date>("fecha_prestamo"));
 
-        //Cargar columnas Histórico
         columnIdPrestamoHistoricoPrestamo.setCellValueFactory(new PropertyValueFactory<HistoricoPrestamo, Integer>("id_prestamo"));
         columnDniAlumnoHistoricoPrestamo.setCellValueFactory(new PropertyValueFactory<HistoricoPrestamo, String>("dni_alumno"));
         columnCodigoLibroHistoricoPrestamo.setCellValueFactory(new PropertyValueFactory<HistoricoPrestamo, Integer>("codigo_libro"));
         columnFechaPrestamoHistoricoPrestamo.setCellValueFactory(new PropertyValueFactory<HistoricoPrestamo, Date>("fecha_prestamo"));
         columnFechaDevolucionHistoricoPrestamo.setCellValueFactory(new PropertyValueFactory<HistoricoPrestamo, Date>("fecha_devolucion"));
 
-        //Cargar Tablas
         tableAlumno.setItems(alumnosExistentes);
         tableLibro.setItems(librosExistentes);
         tablePrestamo.setItems(prestamosExistentes);
         tableHistoricoPrestamo.setItems(historicosExistentes);
 
-        //Filtros
         alumnosOriginales = FXCollections.observableArrayList(alumnosExistentes);
         librosOriginales = FXCollections.observableArrayList(librosExistentes);
         prestamosOriginales = FXCollections.observableArrayList(prestamosExistentes);
@@ -273,7 +277,6 @@ public class MenuPrincipalController implements Initializable {
             historicosExistentes.setAll(historicosOriginales.filtered(historico -> String.valueOf(historico.getId_prestamo()).toLowerCase().contains(filter)));
         });
 
-        //Menú contextual
         List<String> entidadesAlumno = Arrays.asList("contAgregarAlumno", "contModificarAlumno");
         List<EventHandler<ActionEvent>> accionesAlumno = Arrays.asList(this::actionAgregarAlumno, this::actionEditarAlumno);
         List<String> entidadesLibro = Arrays.asList("contAgregarLibro", "contModificarLibro", "contBorrarLibro");
@@ -296,6 +299,7 @@ public class MenuPrincipalController implements Initializable {
      */
     @FXML
     void actionAcercaDe(ActionEvent event) {
+        LOGGER.info("Acción 'Acerca De' ejecutada");
         generarVentana(Alert.AlertType.INFORMATION, "Prestamos de libros\n Autor: Andrea Tortosa Tardio", "INFO");
     }
 
@@ -307,7 +311,6 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     void actionAgregarAlumno(ActionEvent event) {
         try {
-            //Multilingue
             String idioma = Propiedades.getValor("idioma");
             String region = Propiedades.getValor("region");
             Locale.setDefault(new Locale(idioma, region));
@@ -316,12 +319,9 @@ public class MenuPrincipalController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarAlumno.fxml"), bundle);
             Parent root = loader.load();
 
-            //Creación del controlador
             AgregarAlumnoController cargarControllerAlumno = loader.getController();
-            //le pasamos el observableList para que al modificarlo, se actualice solo
             cargarControllerAlumno.initAttributtes(alumnosExistentes);
 
-            //Escena principal
             Scene scene = new Scene(root, 392, 294);
 
             Stage newStage = new Stage();
@@ -329,18 +329,15 @@ public class MenuPrincipalController implements Initializable {
             newStage.setTitle(bundle.getString("labelAgregarAlumno"));
             newStage.setResizable(false);
             newStage.setScene(scene);
-
-            //Modal
             newStage.initModality(Modality.APPLICATION_MODAL);
 
-            //Logo
             Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/alumno.png"));
             newStage.getIcons().add(icon);
 
             newStage.showAndWait();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error al agregar alumno", e);
             generarVentana(Alert.AlertType.ERROR, bundle.getString("agregarAlumnoIncorrecto"), "ERROR");
         }
     }
@@ -353,7 +350,6 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     void actionAgregarHistoricoPrestamo(ActionEvent event) {
         try {
-            //Multilingue
             String idioma = Propiedades.getValor("idioma");
             String region = Propiedades.getValor("region");
             Locale.setDefault(new Locale(idioma, region));
@@ -362,12 +358,9 @@ public class MenuPrincipalController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarHistorico.fxml"), bundle);
             Parent root = loader.load();
 
-            //Creación del controlador
             AgregarHistoricoController cargarControllerHistorico = loader.getController();
-            //le pasamos el observableList para que al modificarlo, se actualice solo
             cargarControllerHistorico.initAttributtes(historicosExistentes, librosExistentes, prestamosExistentes);
 
-            //Escena principal
             Scene scene = new Scene(root, 392, 294);
 
             Stage newStage = new Stage();
@@ -375,18 +368,15 @@ public class MenuPrincipalController implements Initializable {
             newStage.setTitle(bundle.getString("labelAgregarHistorico"));
             newStage.setResizable(false);
             newStage.setScene(scene);
-
-            //Modal
             newStage.initModality(Modality.APPLICATION_MODAL);
 
-            //Logo
             Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/historico.png"));
             newStage.getIcons().add(icon);
 
             newStage.showAndWait();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error al agregar histórico de préstamo", e);
             generarVentana(Alert.AlertType.ERROR, bundle.getString("agregarHistoricoIncorrecto"), "ERROR");
         }
     }
@@ -399,7 +389,6 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     void actionAgregarLibro(ActionEvent event) {
         try {
-            //Multilingue
             String idioma = Propiedades.getValor("idioma");
             String region = Propiedades.getValor("region");
             Locale.setDefault(new Locale(idioma, region));
@@ -408,12 +397,9 @@ public class MenuPrincipalController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarLibro.fxml"), bundle);
             Parent root = loader.load();
 
-            //Creación del controlador
             AgregarLibroController cargarControllerLibro = loader.getController();
-            //le pasamos el observableList para que al modificarlo, se actualice solo
             cargarControllerLibro.initAttributtes(librosExistentes);
 
-            //Escena principal
             Scene scene = new Scene(root, 392, 340);
 
             Stage newStage = new Stage();
@@ -421,30 +407,27 @@ public class MenuPrincipalController implements Initializable {
             newStage.setTitle(bundle.getString("labelAgregarLibro"));
             newStage.setResizable(false);
             newStage.setScene(scene);
-
-            //Modal
             newStage.initModality(Modality.APPLICATION_MODAL);
 
-            //Logo
             Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/libro.png"));
             newStage.getIcons().add(icon);
 
             newStage.showAndWait();
 
         } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error al agregar libro", e);
             generarVentana(Alert.AlertType.ERROR, bundle.getString("agregarLibroIncorrecto"), "ERROR");
         }
     }
 
     /**
-     * Evento que se ejecuta al pulsar el botón para agregar un nuevo prestámo.
+     * Evento que se ejecuta al pulsar el botón para agregar un nuevo préstamo.
      *
      * @param event Evento de pulsar el botón.
      */
     @FXML
     void actionAgregarPrestamo(ActionEvent event) {
         try {
-            //Multilingue
             String idioma = Propiedades.getValor("idioma");
             String region = Propiedades.getValor("region");
             Locale.setDefault(new Locale(idioma, region));
@@ -453,12 +436,9 @@ public class MenuPrincipalController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarPrestamo.fxml"), bundle);
             Parent root = loader.load();
 
-            //Creación del controlador
             AgregarPrestamoController cargarControllerPrestamo = loader.getController();
-            //le pasamos el observableList para que al modificarlo, se actualice solo
             cargarControllerPrestamo.initAttributtes(prestamosExistentes);
 
-            //Escena principal
             Scene scene = new Scene(root, 392, 340);
 
             Stage newStage = new Stage();
@@ -466,17 +446,15 @@ public class MenuPrincipalController implements Initializable {
             newStage.setTitle(bundle.getString("labelAgregarPrestamo"));
             newStage.setResizable(false);
             newStage.setScene(scene);
-
-            //Modal
             newStage.initModality(Modality.APPLICATION_MODAL);
 
-            //Logo
             Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/prestamo.png"));
             newStage.getIcons().add(icon);
 
             newStage.showAndWait();
 
         } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error al agregar préstamo", e);
             generarVentana(Alert.AlertType.ERROR, bundle.getString("agregarPrestamoIncorrecto"), "ERROR");
         }
     }
@@ -488,6 +466,7 @@ public class MenuPrincipalController implements Initializable {
      */
     @FXML
     void actionAlumnosItem(ActionEvent event) {
+        LOGGER.info("Generando listado de alumnos");
         cargarReporte("/eu/andreatt/proyecto2_dein/jasper/Informe4.jrxml");
     }
 
@@ -498,11 +477,11 @@ public class MenuPrincipalController implements Initializable {
      */
     @FXML
     void actionBorrarLibro(ActionEvent event) {
-        //Libro Seleccionado
         Libro itemSeleccionado = tableLibro.getSelectionModel().getSelectedItem();
         if (itemSeleccionado != null) {
             libroDao.darDeBajaLibro(itemSeleccionado.getCodigo());
             librosExistentes.remove(itemSeleccionado);
+            LOGGER.info("Libro borrado: " + itemSeleccionado.getTitulo());
             generarVentana(Alert.AlertType.INFORMATION, bundle.getString("borrarLibroCorrecto"), "INFO");
         }
     }
@@ -517,11 +496,9 @@ public class MenuPrincipalController implements Initializable {
         labelTablaActual.setText(bundle.getString("labelAlumno"));
         labelFiltro.setText(bundle.getString("filtroAlumno"));
 
-        //Mostrar tabla
         ocultarTablas();
         tableAlumno.setVisible(true);
 
-        //Mostrar botones
         ocultarBotones();
         botonAgregarAlumno.setVisible(true);
         botonEditarAlumno.setVisible(true);
@@ -591,12 +568,10 @@ public class MenuPrincipalController implements Initializable {
      */
     @FXML
     void actionEditarAlumno(ActionEvent event) {
-        //Alumno Seleccionado
         Alumno itemSeleccionado = tableAlumno.getSelectionModel().getSelectedItem();
 
         if (itemSeleccionado != null) {
             try {
-                //Multilingue
                 String idioma = Propiedades.getValor("idioma");
                 String region = Propiedades.getValor("region");
                 Locale.setDefault(new Locale(idioma, region));
@@ -605,14 +580,9 @@ public class MenuPrincipalController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarAlumno.fxml"), bundle);
                 Parent root = loader.load();
 
-                //Creación del controlador
                 AgregarAlumnoController cargarControllerAlumno = loader.getController();
+                cargarControllerAlumno.initAttributtes(alumnosExistentes, itemSeleccionado);
 
-                //Enviar datos necesarios para que se actualice solo
-                Alumno alumno = tableAlumno.getSelectionModel().getSelectedItem();
-                cargarControllerAlumno.initAttributtes(alumnosExistentes, alumno);
-
-                //Escena principal
                 Scene scene = new Scene(root, 392, 294);
 
                 Stage newStage = new Stage();
@@ -620,17 +590,15 @@ public class MenuPrincipalController implements Initializable {
                 newStage.setTitle(bundle.getString("labelEditarAlumno"));
                 newStage.setResizable(false);
                 newStage.setScene(scene);
-
-                //Modal
                 newStage.initModality(Modality.APPLICATION_MODAL);
 
-                //Logo
                 Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/alumno.png"));
                 newStage.getIcons().add(icon);
 
                 newStage.showAndWait();
 
             } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Error al editar alumno", e);
                 generarVentana(Alert.AlertType.ERROR, bundle.getString("editarAlumnoIncorrecto"), "ERROR");
             }
         } else {
@@ -645,12 +613,10 @@ public class MenuPrincipalController implements Initializable {
      */
     @FXML
     void actionEditarLibro(ActionEvent event) {
-        //Libro Seleccionado
         Libro itemSeleccionado = tableLibro.getSelectionModel().getSelectedItem();
 
         if (itemSeleccionado != null) {
             try {
-                //Multilingue
                 String idioma = Propiedades.getValor("idioma");
                 String region = Propiedades.getValor("region");
                 Locale.setDefault(new Locale(idioma, region));
@@ -659,14 +625,9 @@ public class MenuPrincipalController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/AgregarLibro.fxml"), bundle);
                 Parent root = loader.load();
 
-                //Creación del controlador
                 AgregarLibroController cargarControllerLibro = loader.getController();
+                cargarControllerLibro.initAttributtes(librosExistentes, itemSeleccionado);
 
-                //Enviar datos necesarios para que se actualice solo
-                Libro libro = tableLibro.getSelectionModel().getSelectedItem();
-                cargarControllerLibro.initAttributtes(librosExistentes, libro);
-
-                //Escena principal
                 Scene scene = new Scene(root, 392, 340);
 
                 Stage newStage = new Stage();
@@ -674,17 +635,15 @@ public class MenuPrincipalController implements Initializable {
                 newStage.setTitle(bundle.getString("labelEditarLibro"));
                 newStage.setResizable(false);
                 newStage.setScene(scene);
-
-                //Modal
                 newStage.initModality(Modality.APPLICATION_MODAL);
 
-                //Logo
                 Image icon = new Image(getClass().getResourceAsStream("/eu/andreatt/proyecto2_dein/images/libro.png"));
                 newStage.getIcons().add(icon);
 
                 newStage.showAndWait();
 
             } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Error al editar libro", e);
                 generarVentana(Alert.AlertType.ERROR, bundle.getString("editarLibroIncorrecto"), "ERROR");
             }
         } else {
@@ -699,13 +658,13 @@ public class MenuPrincipalController implements Initializable {
      */
     @FXML
     void actionGraficoPrestamos(ActionEvent event) {
+        LOGGER.info("Generando gráfico de préstamos");
         cargarReporte("/eu/andreatt/proyecto2_dein/jasper/Informe3.jrxml");
     }
 
     @FXML
     void actionGuiaRapida(ActionEvent event) {
         try {
-            //Multilingue
             String idioma = Propiedades.getValor("idioma");
             String region = Propiedades.getValor("region");
             Locale.setDefault(new Locale(idioma, region));
@@ -714,7 +673,6 @@ public class MenuPrincipalController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/eu/andreatt/proyecto2_dein/fxml/VisorAyudaOffline.fxml"), bundle);
             Parent root = loader.load();
 
-            //Escena principal
             Scene scene = new Scene(root);
 
             Stage newStage = new Stage();
@@ -725,8 +683,8 @@ public class MenuPrincipalController implements Initializable {
             newStage.show();
 
         } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error al abrir la guía rápida", e);
             generarVentana(Alert.AlertType.ERROR, bundle.getString("errorAyudaOffline"), "ERROR");
-            e.printStackTrace();
         }
     }
 
@@ -737,6 +695,7 @@ public class MenuPrincipalController implements Initializable {
      */
     @FXML
     void actionListadoLibros(ActionEvent event) {
+        LOGGER.info("Generando listado de libros");
         cargarReporte("/eu/andreatt/proyecto2_dein/jasper/Informe2.jrxml");
     }
 
@@ -782,6 +741,7 @@ public class MenuPrincipalController implements Initializable {
         alerta.setContentText(mensaje);
         alerta.setHeaderText(null);
         alerta.setTitle(title);
+        LOGGER.info("Ventana generada: " + title);
         alerta.showAndWait();
     }
 
@@ -815,29 +775,23 @@ public class MenuPrincipalController implements Initializable {
      */
     private void cargarReporte(String reportPath) {
         try {
-            // Compila el archivo JRXML
             JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream(reportPath));
 
-            // Obtiene la conexión a la base de datos
             Connection conn = conexionBD.getConexion();
 
-            // Parámetros que se pasarán al reporte Jasper
             Map<String, Object> parameters = new HashMap<>();
             String imageBasePath = getClass().getResource("/eu/andreatt/proyecto2_dein/images/").toString();
             String subreportBasePath = getClass().getResource("/eu/andreatt/proyecto2_dein/jasper/").toString();
             parameters.put("REPORT_IMAGE", imageBasePath);
-            parameters.put("SUBREPORT_PATH",subreportBasePath);
+            parameters.put("SUBREPORT_PATH", subreportBasePath);
 
-            // Llena el informe con los datos y los parámetros
             JasperPrint jprint = JasperFillManager.fillReport(report, parameters, conn);
 
-            // Muestra el informe
             JasperViewer viewer = new JasperViewer(jprint, false);
             viewer.setVisible(true);
         } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error al cargar el reporte: " + reportPath, e);
             generarVentana(Alert.AlertType.ERROR, "Ha ocurrido un error al abrir el reporte", "ERROR");
-            e.printStackTrace();
         }
     }
-
 }

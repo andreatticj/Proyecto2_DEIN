@@ -2,6 +2,7 @@ package eu.andreatt.proyecto2_dein.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import eu.andreatt.proyecto2_dein.dao.AlumnoDao;
 import eu.andreatt.proyecto2_dein.model.Alumno;
@@ -19,6 +20,9 @@ import javafx.stage.Stage;
  * Controlador para la ventana de agregar/editar Alumno.
  */
 public class AgregarAlumnoController implements Initializable {
+
+    /** Logger para registrar eventos y errores. */
+    private static final Logger LOGGER = Logger.getLogger(AgregarAlumnoController.class.getName());
 
     @FXML
     private Button botonCancelar;
@@ -56,6 +60,7 @@ public class AgregarAlumnoController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         // Instanciar bundle para idiomas
         bundle = arg1;
+        LOGGER.info("AgregarAlumnoController inicializado correctamente.");
     }
 
     /**
@@ -65,6 +70,7 @@ public class AgregarAlumnoController implements Initializable {
      */
     public void initAttributtes(ObservableList<Alumno> alumnosExistentes) {
         this.alumnosExistentes = alumnosExistentes;
+        LOGGER.info("Atributos inicializados con la lista de alumnos existentes.");
     }
 
     /**
@@ -85,6 +91,7 @@ public class AgregarAlumnoController implements Initializable {
 
         // Bloquear posibilidad de editar dni
         textFieldDni.setDisable(true);
+        LOGGER.info("Atributos inicializados para edición del alumno con DNI: " + alumno.getDni());
     }
 
     /**
@@ -94,6 +101,7 @@ public class AgregarAlumnoController implements Initializable {
      */
     @FXML
     void actionCancelar(ActionEvent event) {
+        LOGGER.info("Acción 'Cancelar' ejecutada. Cerrando ventana modal.");
         // Cerrar ventana modal
         Stage stage = (Stage) botonCancelar.getScene().getWindow();
         stage.close();
@@ -110,6 +118,7 @@ public class AgregarAlumnoController implements Initializable {
 
         // Validar errores
         if (!errores.isEmpty()) {
+            LOGGER.warning("Errores encontrados durante la validación: \n" + errores);
             generarVentana(AlertType.ERROR, errores, "ERROR");
         } else {
             String alumno = textFieldDni.getText().trim();
@@ -119,6 +128,7 @@ public class AgregarAlumnoController implements Initializable {
                 boolean existeAlumno = new AlumnoDao().existeAlumno(alumno);
                 if (existeAlumno && !guardando) {
                     // Mensaje de alerta
+                    LOGGER.warning("El alumno con DNI " + alumno + " ya existe y no se puede agregar nuevamente.");
                     generarVentana(AlertType.ERROR, bundle.getString("agregarAlumnoIncorrecto"), "ERROR");
                 } else {
                     // Modificar o añadir
@@ -130,6 +140,8 @@ public class AgregarAlumnoController implements Initializable {
                                 new Alumno(textFieldDni.getText(), textFieldNombre.getText(),
                                         textFieldApellido1.getText(), textFieldApellido2.getText()));
 
+                        LOGGER.info("Alumno con DNI " + textFieldDni.getText() + " actualizado correctamente.");
+
                         // Mensaje de alerta
                         generarVentana(AlertType.INFORMATION, bundle.getString("editarAlumnoCorrecto"), "INFO");
                     } else {
@@ -139,6 +151,8 @@ public class AgregarAlumnoController implements Initializable {
                         alumnosExistentes
                                 .add(new Alumno(textFieldDni.getText(), textFieldNombre.getText(),
                                         textFieldApellido1.getText(), textFieldApellido2.getText()));
+
+                        LOGGER.info("Alumno con DNI " + textFieldDni.getText() + " agregado correctamente.");
 
                         // Mensaje de alerta
                         generarVentana(AlertType.INFORMATION, bundle.getString("agregarAlumnoCorrecto"), "INFO");
@@ -165,6 +179,7 @@ public class AgregarAlumnoController implements Initializable {
         alerta.setHeaderText(null);
         alerta.setTitle(title);
         alerta.showAndWait();
+        LOGGER.info("Ventana de alerta mostrada: [Tipo: " + tipoDeAlerta + ", Título: " + title + ", Mensaje: " + mensaje + "]");
     }
 
     /**

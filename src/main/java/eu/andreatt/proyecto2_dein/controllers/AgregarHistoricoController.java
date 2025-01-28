@@ -20,8 +20,16 @@ import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ * Controlador para la ventana de devolver un Libro.
+ */
 public class AgregarHistoricoController implements Initializable {
+
+    /** LOGGER para registrar eventos y errores. */
+    private static final Logger LOGGER = Logger.getLogger(AgregarHistoricoController.class.getName());
 
     @FXML
     private Button botonCancelar;
@@ -52,6 +60,8 @@ public class AgregarHistoricoController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        LOGGER.info("Inicializando AgregarHistoricoController");
+
         // Instanciar bundle para idiomas
         bundle = arg1;
 
@@ -65,6 +75,8 @@ public class AgregarHistoricoController implements Initializable {
         // Establecer la primera posición como selección por defecto
         comboBoxEstado.getSelectionModel().selectFirst();
         comboBoxIdPrestamo.getSelectionModel().selectFirst();
+
+        LOGGER.info("AgregarHistoricoController inicializado correctamente");
     }
 
     /**
@@ -76,6 +88,8 @@ public class AgregarHistoricoController implements Initializable {
      */
     public void initAttributtes(ObservableList<HistoricoPrestamo> historicosExistentes,
                                 ObservableList<Libro> librosExistentes, ObservableList<Prestamo> prestamosExistentes) {
+        LOGGER.info("Inicializando atributos");
+
         this.historicosExistentes = historicosExistentes;
         this.librosExistentes = librosExistentes;
         this.prestamosExistentes = prestamosExistentes;
@@ -83,6 +97,8 @@ public class AgregarHistoricoController implements Initializable {
         // Establecer fecha
         datePickerFechaDevolucion.setValue(LocalDate.now());
         datePickerFechaDevolucion.setDisable(true);
+
+        LOGGER.log(Level.INFO, "Atributos inicializados correctamente");
     }
 
     /**
@@ -92,9 +108,13 @@ public class AgregarHistoricoController implements Initializable {
      */
     @FXML
     void actionCancelar(ActionEvent event) {
+        LOGGER.info( "Acción cancelar ejecutada");
+
         // Cerrar ventana modal
         Stage stage = (Stage) botonCancelar.getScene().getWindow();
         stage.close();
+
+        LOGGER.info( "Ventana modal cerrada");
     }
 
     /**
@@ -104,41 +124,52 @@ public class AgregarHistoricoController implements Initializable {
      */
     @FXML
     void actionGuardar(ActionEvent event) {
+        LOGGER.info( "Acción guardar ejecutada");
 
         String errores = validarDatos();
 
         // Validar errores
         if (!errores.isEmpty()) {
+            LOGGER.log(Level.WARNING, "Errores de validación: {0}", errores);
             generarVentana(Alert.AlertType.ERROR, errores, "ERROR");
         } else {
-            // Obtener préstamo basado en el id_prestamo
-            Prestamo prestamo = new PrestamoDao().cargarPrestamoPorIdPrestamo(comboBoxIdPrestamo.getSelectionModel().getSelectedItem());
+            try {
+                // Obtener préstamo basado en el id_prestamo
+                Prestamo prestamo = new PrestamoDao().cargarPrestamoPorIdPrestamo(comboBoxIdPrestamo.getSelectionModel().getSelectedItem());
 
-            // Añadir historial
-            new HistoricoDao().insertarHistoricoPrestamo(new HistoricoDao().dameMaxIdHistorico() + 1,
-                    prestamo.getDni_alumno(), prestamo.getCodigo_libro(), prestamo.getFecha_prestamo(),
-                    Date.valueOf(datePickerFechaDevolucion.getValue()));
-            historicosExistentes.add(new HistoricoPrestamo(new HistoricoDao().dameMaxIdHistorico() + 1,
-                    prestamo.getDni_alumno(), prestamo.getCodigo_libro(), prestamo.getFecha_prestamo(),
-                    Date.valueOf(datePickerFechaDevolucion.getValue())));
+                // Añadir historial
+                new HistoricoDao().insertarHistoricoPrestamo(new HistoricoDao().dameMaxIdHistorico() + 1,
+                        prestamo.getDni_alumno(), prestamo.getCodigo_libro(), prestamo.getFecha_prestamo(),
+                        Date.valueOf(datePickerFechaDevolucion.getValue()));
+                historicosExistentes.add(new HistoricoPrestamo(new HistoricoDao().dameMaxIdHistorico() + 1,
+                        prestamo.getDni_alumno(), prestamo.getCodigo_libro(), prestamo.getFecha_prestamo(),
+                        Date.valueOf(datePickerFechaDevolucion.getValue())));
 
-            // Actualizar estado del libro
-            new LibroDao().actualizarLibroEstado(prestamo.getCodigo_libro(), comboBoxEstado.getSelectionModel().getSelectedItem());
-            Libro libroBuscado = new LibroDao().dameLibroPorCodigo(prestamo.getCodigo_libro());
-            librosExistentes.set(dameIndiceLibro(libroBuscado),
-                    new Libro(libroBuscado.getCodigo(), libroBuscado.getTitulo(), libroBuscado.getAutor(),
-                            libroBuscado.getEditorial(), libroBuscado.getEstado(), libroBuscado.getBaja()));
+                // Actualizar estado del libro
+                new LibroDao().actualizarLibroEstado(prestamo.getCodigo_libro(), comboBoxEstado.getSelectionModel().getSelectedItem());
+                Libro libroBuscado = new LibroDao().dameLibroPorCodigo(prestamo.getCodigo_libro());
+                librosExistentes.set(dameIndiceLibro(libroBuscado),
+                        new Libro(libroBuscado.getCodigo(), libroBuscado.getTitulo(), libroBuscado.getAutor(),
+                                libroBuscado.getEditorial(), libroBuscado.getEstado(), libroBuscado.getBaja()));
 
-            // Borrar préstamo de la tabla préstamos
-            new PrestamoDao().borrarPrestamoPorIdPrestamo(prestamo.getId_prestamo());
-            prestamosExistentes.remove(prestamo);
+                // Borrar préstamo de la tabla préstamos
+                new PrestamoDao().borrarPrestamoPorIdPrestamo(prestamo.getId_prestamo());
+                prestamosExistentes.remove(prestamo);
 
-            // Mensaje de alerta
-            generarVentana(Alert.AlertType.INFORMATION, bundle.getString("agregarHistoricoCorrecto"), "INFO");
+                LOGGER.info("Historial agregado correctamente");
 
-            // Cerrar ventana modal
-            Stage stage = (Stage) botonCancelar.getScene().getWindow();
-            stage.close();
+                // Mensaje de alerta
+                generarVentana(Alert.AlertType.INFORMATION, bundle.getString("agregarHistoricoCorrecto"), "INFO");
+
+                // Cerrar ventana modal
+                Stage stage = (Stage) botonCancelar.getScene().getWindow();
+                stage.close();
+
+                LOGGER.info("Ventana modal cerrada tras guardar");
+
+            } catch (Exception e) {
+                LOGGER.severe("Error al guardar historial: "+ e.getMessage());
+            }
         }
     }
 
@@ -155,6 +186,8 @@ public class AgregarHistoricoController implements Initializable {
         alerta.setHeaderText(null);
         alerta.setTitle(title);
         alerta.showAndWait();
+
+        LOGGER.log(Level.INFO, "Ventana de alerta mostrada: {0}", title);
     }
 
     /**
@@ -186,7 +219,7 @@ public class AgregarHistoricoController implements Initializable {
         if (comboBoxIdPrestamo.getSelectionModel().getSelectedItem() == null) {
             errores += bundle.getString("mensajePrestamoVacio") + "\n";
         }
-
+        LOGGER.log(Level.WARNING,"Ningún item del combo seleccionado");
         return errores;
     }
 }

@@ -3,11 +3,11 @@ package eu.andreatt.proyecto2_dein.model;
 import java.util.Objects;
 
 /**
- * La clase {@code Alumno} representa a un estudiante con información personal básica,
+ * La clase `Alumno` representa a un estudiante con información personal básica,
  * incluyendo su DNI, nombre y apellidos. Esta clase proporciona métodos para
  * gestionar y acceder a dicha información de manera sencilla.
  *
- * <p>Un objeto de la clase {@code Alumno} se considera único si su DNI es único,
+ * <p>Un objeto de la clase `Alumno` se considera único si su DNI es único,
  * ya que este atributo actúa como identificador principal.
  */
 public class Alumno {
@@ -39,7 +39,6 @@ public class Alumno {
      * @param nombre    El nombre del alumno.
      * @param apellido1 El primer apellido del alumno.
      * @param apellido2 El segundo apellido del alumno.
-     *
      * @throws NullPointerException si alguno de los parámetros es {@code null}.
      */
     public Alumno(String dni, String nombre, String apellido1, String apellido2) {
@@ -139,13 +138,10 @@ public class Alumno {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null || getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         Alumno other = (Alumno) obj;
-        return Objects.equals(apellido1, other.apellido1) && Objects.equals(apellido2, other.apellido2)
-                && Objects.equals(dni, other.dni) && Objects.equals(nombre, other.nombre);
+        return Objects.equals(apellido1, other.apellido1) && Objects.equals(apellido2, other.apellido2) && Objects.equals(dni, other.dni) && Objects.equals(nombre, other.nombre);
     }
 
     /**

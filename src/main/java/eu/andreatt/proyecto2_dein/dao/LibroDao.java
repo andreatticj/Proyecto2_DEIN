@@ -3,6 +3,7 @@ package eu.andreatt.proyecto2_dein.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
 import eu.andreatt.proyecto2_dein.model.Libro;
@@ -14,6 +15,7 @@ import javafx.collections.ObservableList;
  */
 public class LibroDao {
 
+    private static final Logger LOGGER = Logger.getLogger(LibroDao.class.getName()); // Logger instance
     private ConexionBD conexion;
 
     /**
@@ -42,8 +44,11 @@ public class LibroDao {
             rs.close();
             conexion.closeConnection();
 
+            // Log successful load
+            LOGGER.info("Lista de libros cargada correctamente.");
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al cargar la lista de libros: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -78,8 +83,11 @@ public class LibroDao {
             rs.close();
             conexion.closeConnection();
 
+            // Log successful load
+            LOGGER.info("Lista de libros de alta cargada correctamente.");
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al cargar la lista de libros de alta: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -109,8 +117,11 @@ public class LibroDao {
             rs.close();
             conexion.closeConnection();
 
+            // Log successful load
+            LOGGER.info("Lista de códigos de libros no prestados cargada correctamente.");
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al cargar los códigos de libros no prestados: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -147,10 +158,11 @@ public class LibroDao {
             }
 
             conexion.closeConnection();
+            LOGGER.info("Libro insertado correctamente: " + codigo);
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al insertar libro: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -187,10 +199,11 @@ public class LibroDao {
             }
 
             conexion.closeConnection();
+            LOGGER.info("Libro actualizado correctamente: " + codigo);
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al actualizar libro: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -219,10 +232,11 @@ public class LibroDao {
             }
 
             conexion.closeConnection();
+            LOGGER.info("Estado del libro actualizado correctamente: " + codigo);
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al actualizar estado del libro: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -249,10 +263,11 @@ public class LibroDao {
             }
 
             conexion.closeConnection();
+            LOGGER.info("Libro dado de baja correctamente: " + codigoLibro);
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al dar de baja libro: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -284,7 +299,7 @@ public class LibroDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al verificar existencia de libro: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -324,13 +339,12 @@ public class LibroDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al obtener libro por código: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
             }
         }
-
         return libro;
     }
 }

@@ -8,12 +8,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase que gestiona la conexión con la base de datos.
  * Utiliza las propiedades de conexión definidas en la clase {@link Propiedades}.
  */
 public class ConexionBD {
+
+    /** Logger para registrar eventos y errores. */
+    private static final Logger LOGGER = Logger.getLogger(ConexionBD.class.getName());
 
     /** Conexión activa con la base de datos. */
     private Connection conexion;
@@ -29,12 +34,14 @@ public class ConexionBD {
             String user = Propiedades.getValor("user");
             String password = Propiedades.getValor("password");
 
-            //System.out.println("Conectando a la base de datos con URL: " + url + ", Usuario: " + user);
+            LOGGER.info("Intentando conectar a la base de datos con URL: " + url + ", Usuario: " + user);
             conexion = DriverManager.getConnection(url, user, password);
             conexion.setAutoCommit(true);
+            LOGGER.info("Conexión establecida correctamente.");
         } catch (SQLException e) {
-            generarVentanaAlerta("Error al conectar con la base de datos", e.getMessage());
-            e.printStackTrace();
+            String mensajeError = "Error al conectar con la base de datos: " + e.getMessage();
+            LOGGER.log(Level.SEVERE, mensajeError, e);
+            generarVentanaAlerta("Error al conectar con la base de datos", mensajeError);
         }
     }
 
@@ -54,10 +61,11 @@ public class ConexionBD {
         if (conexion != null) {
             try {
                 conexion.close();
-                //System.out.println("Conexión cerrada correctamente.");
+                LOGGER.info("Conexión cerrada correctamente.");
             } catch (SQLException e) {
-                generarVentanaAlerta("Error al cerrar la conexión", e.getMessage());
-                e.printStackTrace();
+                String mensajeError = "Error al cerrar la conexión: " + e.getMessage();
+                LOGGER.log(Level.SEVERE, mensajeError, e);
+                generarVentanaAlerta("Error al cerrar la conexión", mensajeError);
             }
         }
     }

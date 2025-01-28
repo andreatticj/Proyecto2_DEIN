@@ -14,8 +14,18 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ * Controlador para la ventana de agregar/editar Libro.
+ */
 public class AgregarLibroController implements Initializable {
+
+    /**
+     * LOGGER para registrar eventos y errores.
+     */
+    private static final Logger LOGGER = Logger.getLogger(AgregarHistoricoController.class.getName());
 
     @FXML
     private Button botonCancelar;
@@ -57,6 +67,7 @@ public class AgregarLibroController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        LOGGER.info("Inicializando controlador AgregarLibroController");
         // Instanciar bundle para idiomas
         bundle = arg1;
 
@@ -74,6 +85,7 @@ public class AgregarLibroController implements Initializable {
      */
     public void initAttributtes(ObservableList<Libro> librosExistentes) {
         this.librosExistentes = librosExistentes;
+        LOGGER.info("Atributos inicializados con lista de libros existentes");
 
         // Establecer la primera posición como selección por defecto
         comboBoxEstado.getSelectionModel().selectFirst();
@@ -92,6 +104,7 @@ public class AgregarLibroController implements Initializable {
     public void initAttributtes(ObservableList<Libro> librosExistentes, Libro libro) {
         this.librosExistentes = librosExistentes;
         this.libro = libro;
+        LOGGER.info("Atributos inicializados para editar un libro existente: " + libro.getCodigo());
         textFieldCodigo.setText(libro.getCodigo() + "");
         textFieldTitulo.setText(libro.getTitulo());
         textFieldAutor.setText(libro.getAutor());
@@ -111,6 +124,7 @@ public class AgregarLibroController implements Initializable {
      */
     @FXML
     void actionCancelar(ActionEvent event) {
+        LOGGER.info("Cancelando operación");
         // Cerrar ventana modal
         Stage stage = (Stage) botonCancelar.getScene().getWindow();
         stage.close();
@@ -123,21 +137,25 @@ public class AgregarLibroController implements Initializable {
      */
     @FXML
     void actionGuardar(ActionEvent event) {
+        LOGGER.info("Intentando guardar libro");
         String libro = textFieldCodigo.getText().trim();
 
         // Comprobar si existe libro
         if (!libro.isEmpty()) {
             boolean existeLibro = new LibroDao().existeLibro(Integer.parseInt(libro));
             if (existeLibro && !guardando) {
+                LOGGER.warning("El código del libro ya existe: " + libro);
                 // Mensaje de alerta
                 generarVentana(Alert.AlertType.ERROR, bundle.getString("agregarLibroIncorrecto"), "ERROR");
             } else {
                 String errores = validarDatos();
                 if (!errores.isEmpty()) {
+                    LOGGER.warning("Errores de validación: " + errores);
                     generarVentana(Alert.AlertType.ERROR, errores, "ERROR");
                 } else {
                     // Modificar o añadir
                     if (guardando) {
+                        LOGGER.info("Actualizando libro con código: " + libro);
                         // Actualizar libro
                         new LibroDao().actualizarLibro(Integer.parseInt(textFieldCodigo.getText()), textFieldTitulo.getText(),
                                 textFieldAutor.getText(), textFieldEditorial.getText(),
@@ -158,6 +176,7 @@ public class AgregarLibroController implements Initializable {
                         generarVentana(Alert.AlertType.INFORMATION, bundle.getString("editarLibroCorrecto"), "INFO");
                     } else {
                         // Añadir libro
+                        LOGGER.info("Insertando nuevo libro con código: " + libro);
                         new LibroDao().insertarLibro(Integer.parseInt(textFieldCodigo.getText()),
                                 textFieldTitulo.getText(), textFieldAutor.getText(), textFieldEditorial.getText(),
                                 comboBoxEstado.getSelectionModel().getSelectedItem(),
@@ -235,6 +254,7 @@ public class AgregarLibroController implements Initializable {
      * @param title        Título de la alerta
      */
     private void generarVentana(Alert.AlertType tipoDeAlerta, String mensaje, String title) {
+        LOGGER.log(tipoDeAlerta == Alert.AlertType.ERROR ? Level.WARNING : Level.INFO, mensaje);
         Alert alerta = new Alert(tipoDeAlerta);
         alerta.setContentText(mensaje);
         alerta.setHeaderText(null);

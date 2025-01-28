@@ -3,6 +3,7 @@ package eu.andreatt.proyecto2_dein.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
 import eu.andreatt.proyecto2_dein.model.Alumno;
@@ -15,6 +16,10 @@ import javafx.collections.ObservableList;
  */
 public class AlumnoDao {
 
+    /**
+     * LOGGER para registrar eventos y errores.
+     */
+    private static final Logger LOGGER = Logger.getLogger(AlumnoDao.class.getName());
     private ConexionBD conexion;
 
     /**
@@ -41,8 +46,11 @@ public class AlumnoDao {
             rs.close();
             conexion.closeConnection();
 
+            // Log when data is successfully loaded
+            LOGGER.info("Lista de alumnos cargada correctamente.");
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al cargar la lista de alumnos: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -71,8 +79,11 @@ public class AlumnoDao {
             rs.close();
             conexion.closeConnection();
 
+            // Log when data is successfully loaded
+            LOGGER.info("Lista de DNIs de alumnos cargada correctamente.");
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al cargar la lista de DNIs de alumnos: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -103,10 +114,14 @@ public class AlumnoDao {
 
             pstmt.executeUpdate();
             conexion.closeConnection();
+
+            // Log insertion success
+            LOGGER.info("Alumno insertado correctamente: " + dni);
+
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al insertar alumno: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -137,10 +152,14 @@ public class AlumnoDao {
 
             pstmt.executeUpdate();
             conexion.closeConnection();
+
+            // Log update success
+            LOGGER.info("Datos del alumno actualizados correctamente: " + dni);
+
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al actualizar alumno: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -167,11 +186,15 @@ public class AlumnoDao {
 
             if (rs.next()) {
                 int count = rs.getInt(1);
+
+                // Log the result of the check
+                LOGGER.info("Alumno con DNI " + dni + " existe: " + (count > 0));
+
                 return count > 0;
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al verificar existencia del alumno: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();

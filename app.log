@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-28T15:17:14.451104900Z</date>
+  <millis>1738077434451</millis>
+  <nanos>104900</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+<record>
+  <date>2025-01-28T15:17:44.433081700Z</date>
+  <millis>1738077464433</millis>
+  <nanos>81700</nanos>
+  <sequence>28</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>actionAcercaDe</method>
+  <thread>25</thread>
+  <message>Acción 'Acerca De' ejecutada</message>
+</record>
+<record>
+  <date>2025-01-28T15:17:44.474133Z</date>
+  <millis>1738077464474</millis>
+  <nanos>133000</nanos>
+  <sequence>29</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>generarVentana</method>
+  <thread>25</thread>
+  <message>Ventana generada: INFO</message>
+</record>
+<record>
+  <date>2025-01-28T15:17:49.453146500Z</date>
+  <millis>1738077469453</millis>
+  <nanos>146500</nanos>
+  <sequence>30</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>actionListadoLibros</method>
+  <thread>25</thread>
+  <message>Generando listado de libros</message>
+</record>
+<record>
+  <date>2025-01-28T15:18:27.652156400Z</date>
+  <millis>1738077507652</millis>
+  <nanos>156400</nanos>
+  <sequence>31</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>actionGraficoPrestamos</method>
+  <thread>25</thread>
+  <message>Generando gráfico de préstamos</message>
+</record>
+<record>
+  <date>2025-01-28T15:18:40.944652900Z</date>
+  <millis>1738077520944</millis>
+  <nanos>652900</nanos>
+  <sequence>32</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>actionAlumnosItem</method>
+  <thread>25</thread>
+  <message>Generando listado de alumnos</message>
+</record>
+</log>

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
 import eu.andreatt.proyecto2_dein.model.HistoricoPrestamo;
@@ -15,6 +16,10 @@ import javafx.collections.ObservableList;
  */
 public class HistoricoDao {
 
+    /**
+     * LOGGER para registrar eventos y errores.
+     */
+    private static final Logger LOGGER = Logger.getLogger(HistoricoDao.class.getName());
     private ConexionBD conexion;
 
     /**
@@ -42,8 +47,11 @@ public class HistoricoDao {
             rs.close();
             conexion.closeConnection();
 
+            // Log successful loading
+            LOGGER.info("Lista de préstamos históricos cargada correctamente.");
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al cargar la lista de préstamos históricos: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -55,10 +63,10 @@ public class HistoricoDao {
     /**
      * Inserta un nuevo préstamo en el histórico en la base de datos.
      *
-     * @param id_prestamo     Identificador del préstamo.
-     * @param dni_alumno      DNI del alumno.
-     * @param codigo_libro    Código del libro.
-     * @param fecha_prestamo  Fecha de préstamo.
+     * @param id_prestamo      Identificador del préstamo.
+     * @param dni_alumno       DNI del alumno.
+     * @param codigo_libro     Código del libro.
+     * @param fecha_prestamo   Fecha de préstamo.
      * @param fecha_devolucion Fecha de devolución.
      * @return `true` si la inserción fue exitosa, `false` en caso contrario.
      */
@@ -78,10 +86,14 @@ public class HistoricoDao {
             }
 
             conexion.closeConnection();
+
+            // Log successful insertion
+            LOGGER.info("Nuevo préstamo insertado correctamente: ID Prestamo " + id_prestamo);
+
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al insertar préstamo histórico: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();
@@ -105,13 +117,18 @@ public class HistoricoDao {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("max_id");
+                int maxId = rs.getInt("max_id");
+
+                // Log the maximum ID value
+                LOGGER.info("El ID máximo de los históricos es: " + maxId);
+
+                return maxId;
             }
 
             rs.close();
             conexion.closeConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error al obtener el ID máximo de los préstamos históricos: " + e.getMessage());
         } finally {
             if (conexion != null) {
                 conexion.closeConnection();

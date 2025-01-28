@@ -2,6 +2,8 @@ package eu.andreatt.proyecto2_dein.util;
 
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * Clase utilitaria para cargar y acceder a propiedades desde un archivo
@@ -11,6 +13,10 @@ import java.util.Properties;
  * las propiedades de un archivo llamado 'configuration.properties'.
  */
 public class Propiedades {
+
+    /** Logger para registrar eventos y errores. */
+    private static final Logger LOGGER = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
+
     /** Objeto de propiedades que almacena las claves y sus valores. */
     private static final Properties props = new Properties();
 
@@ -22,7 +28,7 @@ public class Propiedades {
             }
             props.load(input); // Carga las propiedades desde el archivo
         } catch (Exception e) {
-            e.printStackTrace();  // Imprime la pila de la excepción para depuración
+            LOGGER.severe("Error al cargar las propiedades: " + e.getMessage());
         }
     }
 
@@ -40,7 +46,7 @@ public class Propiedades {
             return valor; // Devuelve el valor si se encuentra
         } else {
             // Muestra las claves disponibles en caso de que la clave no se encuentre
-            System.out.println("Claves disponibles en el archivo de propiedades: " + props.keySet());
+            LOGGER.warning("Claves disponibles en el archivo de propiedades: " + props.keySet());
             throw new RuntimeException("Clave '" + clave + "' no encontrada en el archivo de propiedades.");
         }
     }

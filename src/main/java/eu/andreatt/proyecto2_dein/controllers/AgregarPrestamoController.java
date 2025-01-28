@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-
 import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
 import eu.andreatt.proyecto2_dein.dao.AlumnoDao;
 import eu.andreatt.proyecto2_dein.dao.LibroDao;
@@ -30,8 +29,16 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.logging.Logger;
 
+
+/**
+ * Controlador para la ventana de agregar préstamo.
+ */
 public class AgregarPrestamoController implements Initializable {
+
+    /** LOGGER para registrar eventos y errores. */
+    private static final Logger logger = Logger.getLogger(AgregarPrestamoController.class.getName());
 
     @FXML
     private Button botonCancelar;
@@ -69,14 +76,17 @@ public class AgregarPrestamoController implements Initializable {
 
         // Inicializar conexión a la base de datos
         conexionBD = new ConexionBD();
+        logger.info("Conexión a la base de datos establecida.");
 
         // Cargar códigos de libros
         LibroDao libroDao = new LibroDao();
         comboBoxCodigoLibro.setItems(libroDao.cargarComboCodigo());
+        logger.info("Códigos de libros cargados.");
 
         // Cargar dni de alumnos
         AlumnoDao alumnoDao = new AlumnoDao();
         comboBoxDniAlumno.setItems(alumnoDao.cargarComboDni());
+        logger.info("DNI de alumnos cargados.");
     }
 
     /**
@@ -98,6 +108,8 @@ public class AgregarPrestamoController implements Initializable {
         // Establecer la primera posición como selección por defecto
         comboBoxCodigoLibro.getSelectionModel().selectFirst();
         comboBoxDniAlumno.getSelectionModel().selectFirst();
+
+        logger.info("Atributos inicializados con préstamo existente.");
     }
 
     /**
@@ -110,6 +122,7 @@ public class AgregarPrestamoController implements Initializable {
         // Cerrar ventana modal
         Stage stage = (Stage) botonCancelar.getScene().getWindow();
         stage.close();
+        logger.info("Ventana de agregar préstamo cerrada por el usuario.");
     }
 
     /**
@@ -119,12 +132,12 @@ public class AgregarPrestamoController implements Initializable {
      */
     @FXML
     void actionGuardar(ActionEvent event) {
-
         String errores = validarDatos();
 
         // Validar errores
         if (!errores.isEmpty()) {
             generarVentana(AlertType.ERROR, errores, "ERROR");
+            logger.severe("Se encontraron errores al guardar el préstamo: " + errores);
         } else {
             // Añadir préstamo
             new PrestamoDao().insertarPrestamo(Integer.parseInt(textFieldIdPrestamo.getText()),
@@ -143,9 +156,10 @@ public class AgregarPrestamoController implements Initializable {
             Stage stage = (Stage) botonCancelar.getScene().getWindow();
             stage.close();
 
+            // Cargar reporte
             cargarReporte("/eu/andreatt/proyecto2_dein/jasper/Informe1.jrxml");
+            logger.info("Préstamo añadido y reporte generado.");
         }
-
     }
 
     /**
@@ -174,11 +188,13 @@ public class AgregarPrestamoController implements Initializable {
         // Combo Dni
         if (comboBoxDniAlumno.getSelectionModel().getSelectedItem() == null) {
             errores += bundle.getString("mensajeDniVacio") + "\n";
+            logger.warning("DNI del alumno vacío.");
         }
 
         // Combo Libro
         if (comboBoxCodigoLibro.getSelectionModel().getSelectedItem() == null) {
             errores += bundle.getString("mensajeLibroVacio") + "\n";
+            logger.warning("Código de libro vacío.");
         }
 
         return errores;
@@ -209,10 +225,11 @@ public class AgregarPrestamoController implements Initializable {
             // Muestra el informe
             JasperViewer viewer = new JasperViewer(jprint, false);
             viewer.setVisible(true);
+
+            logger.info("Reporte generado y mostrado exitosamente.");
         } catch (Exception e) {
             generarVentana(Alert.AlertType.ERROR, "Ha ocurrido un error al abrir el reporte", "ERROR");
-            e.printStackTrace();
+            logger.severe("Error al generar el reporte: " + e.getMessage());
         }
     }
-
 }
