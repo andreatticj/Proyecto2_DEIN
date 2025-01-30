@@ -172,12 +172,6 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private TextField textFieldFiltro;
 
-    @FXML
-    private TextField textFieldFiltroHistorico;
-
-    @FXML
-    private TextField textFieldFiltroHistorico2;
-
     private AlumnoDao alumnoDao;
     private LibroDao libroDao;
     private PrestamoDao prestamoDao;
@@ -264,17 +258,11 @@ public class MenuPrincipalController implements Initializable {
             alumnosExistentes.setAll(alumnosOriginales.filtered(alumno -> alumno.getNombre().toLowerCase().contains(filter)));
             librosExistentes.setAll(librosOriginales.filtered(libro -> libro.getTitulo().toLowerCase().contains(filter)));
             prestamosExistentes.setAll(prestamosOriginales.filtered(prestamo -> String.valueOf(prestamo.getCodigo_libro()).toLowerCase().contains(filter)));
-            historicosExistentes.setAll(historicosOriginales.filtered(historico -> String.valueOf(historico.getCodigo_libro()).toLowerCase().contains(filter)));
-        });
-
-        textFieldFiltroHistorico.textProperty().addListener((observable, oldValue, newValue) -> {
-            String filter = newValue.toLowerCase();
-            historicosExistentes.setAll(historicosOriginales.filtered(historico -> historico.getDni_alumno().toLowerCase().contains(filter)));
-        });
-
-        textFieldFiltroHistorico2.textProperty().addListener((observable, oldValue, newValue) -> {
-            String filter = newValue.toLowerCase();
-            historicosExistentes.setAll(historicosOriginales.filtered(historico -> String.valueOf(historico.getId_prestamo()).toLowerCase().contains(filter)));
+            historicosExistentes.setAll(historicosOriginales.filtered(historico ->
+                    String.valueOf(historico.getCodigo_libro()).toLowerCase().contains(filter) ||
+                            historico.getDni_alumno().toLowerCase().contains(filter) ||
+                            String.valueOf(historico.getId_prestamo()).toLowerCase().contains(filter)
+            ));
         });
 
         List<String> entidadesAlumno = Arrays.asList("contAgregarAlumno", "contModificarAlumno");
@@ -709,8 +697,6 @@ public class MenuPrincipalController implements Initializable {
         tablePrestamo.setVisible(false);
 
         textFieldFiltro.setVisible(true);
-        textFieldFiltroHistorico.setVisible(false);
-        textFieldFiltroHistorico2.setVisible(false);
 
         labelFiltroHistorico.setVisible(false);
         labelFiltroHistorico2.setVisible(false);

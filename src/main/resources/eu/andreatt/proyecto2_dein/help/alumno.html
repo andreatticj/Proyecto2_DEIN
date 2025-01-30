@@ -1,70 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index 1</title>
-    <style>
-        body {
-			background-color:#e6e6e6;
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Alumno</title>
+	<style>
+		body {
+            background-color: #f4f4f4;
             font-family: 'Arial', sans-serif;
-            margin: 20px;
+            margin: 40px;
+            color: #444;
         }
 
-        h1, h2, h3 {
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+
+        .info-box {
+            background: #e0e0e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .info-box h3 {
             color: #333;
+            margin-bottom: 5px;
         }
-		
-		.grande{
-			font-size:150%;
-		}
-		
-		.divi {
-			background-color: #c2c2c2;
-			border-radius: 10px;
-			padding: 10px;
-			margin-bottom: 20px;
-		}
-
-		span[color="colorAlumno"] {
-            color: red;
-        }
-        aside {
-            flex: 1;
-        }
-    </style>
+	</style>
 </head>
 <body>
-    <h1><span color="colorAlumno">ALUMNO</span></h1>
-    
-    <div>
-        <div class="divi">
-			<h3 class="grande"><span color="colorAlumno">Nombre</span></h3>
-			<p>
-				El nombre de una persona, utilizado para identificarla de manera individual. En el contexto de un alumno, sería el nombre propio del estudiante.
-			</p>
-        </div>
-		
-		 <div class="divi">
-			<h3 class="grande"><span color="colorAlumno">Dni</span></h3>
-			<p>
-				Un número único asignado a un individuo por la autoridad gubernamental de un país para identificación y control de ciudadanía. En el contexto de un alumno, se refiere al número de identificación nacional del estudiante.
-			</p>
-        </div>
-		
-		<div class="divi">
-			<h3 class="grande"><span color="colorAlumno">Primer Apellido</span></h3>
-			<p>
-				El primer componente del apellido de una persona. En algunas culturas, el apellido se compone de dos partes, y el primer apellido se coloca antes del segundo apellido.
-			</p>
-        </div>
-		
-		 <div class="divi">
-			<h3 class="grande"><span color="colorAlumno">Segundo Apellido</span></h3>
-			<p>
-				El segundo componente del apellido de una persona. En algunas culturas, el apellido se compone de dos partes, y el segundo apellido se coloca después del primer apellido.
-			</p>
-        </div>
-    </div>
+<div class="container">
+	<h1>Alumno</h1>
+
+	<div class="info-box">
+		<h3>Nombre</h3>
+		<p>Identificación personal del estudiante, compuesto por uno o más nombres.</p>
+	</div>
+
+	<div class="info-box">
+		<h3>DNI</h3>
+		<p>Documento único de identificación del estudiante, utilizado en trámites oficiales y administrativos.</p>
+	</div>
+
+	<div class="info-box">
+		<h3>Primer Apellido</h3>
+		<p>Apellido principal del estudiante, generalmente heredado del padre.</p>
+	</div>
+
+	<div class="info-box">
+		<h3>Segundo Apellido</h3>
+		<p>Apellido secundario del estudiante, generalmente heredado de la madre.</p>
+	</div>
+</div>
 </body>
 </html>

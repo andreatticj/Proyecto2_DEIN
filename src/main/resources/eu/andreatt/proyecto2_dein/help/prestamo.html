@@ -1,71 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index 1</title>
-    <style>
-        body {
-			background-color:#e6e6e6;
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Préstamo</title>
+	<style>
+		body {
+            background-color: #f8f9fa;
             font-family: 'Arial', sans-serif;
-            margin: 20px;
+            margin: 40px;
+            color: #343a40;
         }
 
-        h1, h2, h3 {
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .info-box {
+            background: #d7dbdd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .info-box h3 {
             color: #333;
+            margin-bottom: 5px;
         }
-		
-		.grande{
-			font-size:150%;
-		}
-		
-		.divi {
-			background-color: #c2c2c2;
-			border-radius: 10px;
-			padding: 10px;
-			margin-bottom: 20px;
-		}
-
-		span[color="colorPrestamo"] {
-            color: blue;
-        }
-
-        aside {
-            flex: 1;
-        }
-    </style>
+	</style>
 </head>
 <body>
-    <h1><span color="colorPrestamo">PRÉSTAMO</span></h1>
-    
-    <div>
-        <div class="divi">
-			<h3 class="grande"><span color="colorPrestamo">Id Préstamo</span></h3>
-			<p>
-				Un código único asignado a un objeto, entidad o elemento con el propósito de identificación única. En el contexto de libros, podría ser un número o combinación de caracteres que identifica de manera única a cada libro en un sistema.
-			</p>
-        </div>
-		
-		 <div class="divi">
-			<h3 class="grande"><span color="colorPrestamo">Dni Alumno</span></h3>
-			<p>
-				Un número único asignado a un individuo por la autoridad gubernamental de un país para identificación y control de ciudadanía. En el contexto de un alumno, se refiere al número de identificación nacional del estudiante.
-			</p>
-        </div>
-		
-		<div class="divi">
-			<h3 class="grande"><span color="colorPrestamo">Código Libro</span></h3>
-			<p>
-				Un código único asignado a un objeto, entidad o elemento con el propósito de identificación única. En el contexto de libros, podría ser un número o combinación de caracteres que identifica de manera única a cada libro en un sistema.
-			</p>
-        </div>
-		
-		 <div class="divi">
-			<h3 class="grande"><span color="colorPrestamo">Fecha Préstamo</span></h3>
-			<p>
-				La fecha en la que se realiza la transacción de préstamo de un objeto o entidad, como un libro. En el contexto de bibliotecas o sistemas de préstamos, la fecha de préstamo marca el momento en el que un usuario toma prestado un artículo.
-			</p>
-        </div>
-    </div>
+
+<div class="container">
+	<h1>Préstamo</span></h1>
+
+	<div class="info-box">
+		<h3><span>Id del Préstamo</span></h3>
+		<p>Es un código único que identifica de manera exclusiva cada transacción de préstamo. En este caso, se asocia a un libro prestado a un usuario, permitiendo su seguimiento dentro del sistema.</p>
+	</div>
+
+	<div class="info-box">
+		<h3><span>DNI del Alumno</span></h3>
+		<p>Es el número de identificación oficial de cada estudiante, asignado por las autoridades competentes. Se utiliza para asociar el préstamo al alumno que lo realiza, garantizando su trazabilidad.</p>
+	</div>
+
+	<div class="info-box">
+		<h3><span>Código del Libro</span></h3>
+		<p>Es un identificador único asignado a cada libro. Este código se utiliza para registrar y gestionar el préstamo del libro dentro del sistema, evitando confusiones o duplicidades.</p>
+	</div>
+
+	<div class="info-box">
+		<h3><span>Fecha de Préstamo</span></h3>
+		<p>Es la fecha en la que el libro fue retirado del sistema o biblioteca. Indica el inicio del préstamo y se utiliza para controlar la duración del mismo y la fecha de devolución.</p>
+	</div>
+
+</div>
+
 </body>
 </html>

@@ -1,97 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index 1</title>
-    <style>
-        body {
-			background-color:#e6e6e6;
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sistema de Préstamos de Libros</title>
+	<style>
+		body {
+            background-color: #f4f4f9;
             font-family: 'Arial', sans-serif;
-            margin: 20px;
+            margin: 40px;
+            color: #444;
         }
 
-        h1, h2, h3 {
-            color: #333;
-        }
-		
-		.grande{
-			font-size:150%;
-		}
-		
-		.divi {
-			background-color: #c2c2c2;
-			border-radius: 10px;
-			padding: 10px;
-			margin-bottom: 20px;
-		}
-		
-
-		
-		span[color="colorTitulo"] {
-            color: purple;
-        }
-		span[color="colorAlumno"] {
-            color: red;
-        }
-		span[color="colorLibro"] {
-            color: green;
-        }
-		span[color="colorPrestamo"] {
-            color: blue;
-        }
-		span[color="colorHistorico"] {
-            color: #009688;
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
         }
 
-        aside {
-            flex: 1;
+        h1 {
+            text-align: center;
+            color: #2c3e50;
         }
-    </style>
+
+        .info-box {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .info-box h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+	</style>
 </head>
 <body>
-    <h1><span color="colorTitulo">PRÉSTAMO DE LIBROS</span></h1>
-    
-    <div>
-        <div class="divi">
-			<h3 class="grande"><span color="colorAlumno">Alumno</span></h3>
-			<p>
-				<strong>ATRIBUTOS:</strong> <span color="colorAlumno"><strong>Dni</strong></span>, Nombre, Primer Apellido, Segundo Apellido
-			</p>
-			<p>
-				Un alumno es el usuario que realiza el préstamo de uno o varios libros.
-			</p>
-        </div>
-		
-		<div class="divi">
-			<h3 class="grande"><span color="colorLibro">Libro</span></h3>
-			<p>
-				<strong>ATRIBUTOS:</strong> <span color="colorLibro"><strong>Código</strong></span>, Título, Autor, Editorial, Estado, Baja, Portada
-			</p>
-			<p>
-				Un libro es prestado a uno o varios alumnos.
-			</p>
-        </div>
-		
-		<div class="divi">
-			<h3 class="grande"><span color="colorPrestamo">Préstamo</span></h3>
-			<p>
-				<strong>ATRIBUTOS:</strong> <span color="colorPrestamo"><strong>Id_prestamo</strong></span>, <span color="colorAlumno">Dni_Alumno</span>, <span color="colorLibro">Código_Libro</span>, Fecha Préstamo
-			</p>
-			<p>
-				Un préstamo se realiza entre un alumno y un libro, pudiendo hacer varios préstamos simultaneamente.
-			</p>
-        </div>
-		
-		<div class="divi">
-			<h3 class="grande"><span color="colorHistorico">Histórico de Préstamos</span></h3>
-			<p>
-				<strong>ATRIBUTOS:</strong> <span color="colorHistorico"><strong>Id_prestamo</strong></span>, <span color="colorAlumno">Dni_Alumno</span>, <span color="colorLibro">Código_Libro</span>, Fecha Préstamo, Fecha Devolución
-			</p>
-			<p>
-				El histórico de prestamos registra todos los préstamos realizados. 
-			</p>
-        </div>
-    </div>
+<div class="container">
+	<h1>Sistema de Préstamos de Libros</h1>
+
+	<div class="info-box">
+		<h3>Datos del Alumno</h3>
+		<p><strong>Atributos:</strong> DNI, Nombre, Apellidos</p>
+		<p>El estudiante que solicita un préstamo de libro en la biblioteca.</p>
+	</div>
+
+	<div class="info-box">
+		<h3>Información del Libro</h3>
+		<p><strong>Atributos:</strong> Código, Título, Autor, Editorial, Estado</p>
+		<p>Cada libro tiene un identificador único en el sistema y está disponible para préstamo.</p>
+	</div>
+
+	<div class="info-box">
+		<h3>Registro de Préstamos</h3>
+		<p><strong>Atributos:</strong> ID de Préstamo, DNI del Alumno, Código del Libro, Fecha de Préstamo</p>
+		<p>Registra cada vez que un estudiante retira un libro.</p>
+	</div>
+
+	<div class="info-box">
+		<h3>Histórico de Préstamos o Devoluciones de Préstamos</h3>
+		<p><strong>Atributos:</strong> ID de Préstamo, DNI del Alumno, Código del Libro, Fecha de Préstamo, Fecha de Devolución</p>
+		<p>Lista detallada de todos los préstamos y devoluciones realizados en la biblioteca.</p>
+	</div>
+</div>
 </body>
 </html>

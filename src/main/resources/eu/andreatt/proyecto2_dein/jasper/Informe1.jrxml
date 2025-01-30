@@ -96,7 +96,7 @@ WHERE Prestamo.id_prestamo =  $P{ID_PRESTAMO}]]>
 			<band height="230">
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<staticText>
-					<reportElement x="0" y="0" width="180" height="20" uuid="3d226174-08e6-4b1c-b78e-8e13abb33606"/>
+					<reportElement mode="Opaque" x="0" y="0" width="553" height="20" backcolor="#FF9800" uuid="3d226174-08e6-4b1c-b78e-8e13abb33606"/>
 					<textElement verticalAlignment="Middle">
 						<font size="14"/>
 					</textElement>
@@ -215,8 +215,8 @@ WHERE Prestamo.id_prestamo =  $P{ID_PRESTAMO}]]>
 		<band height="150" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement style="Title" x="160" y="10" width="234" height="33" uuid="6f9c1004-6140-4588-9c4f-d75824835765"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement style="Title" x="145" y="48" width="234" height="33" uuid="6f9c1004-6140-4588-9c4f-d75824835765"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="20"/>
 				</textElement>
 				<text><![CDATA[PRESTAMOS]]></text>
@@ -239,7 +239,7 @@ WHERE Prestamo.id_prestamo =  $P{ID_PRESTAMO}]]>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="0" y="0" width="180" height="20" uuid="1215a81d-b08e-49a7-8d47-4034305d357e"/>
+				<reportElement mode="Opaque" x="0" y="0" width="553" height="20" backcolor="#FF9800" uuid="1215a81d-b08e-49a7-8d47-4034305d357e"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>

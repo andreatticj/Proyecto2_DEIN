@@ -74,3 +74,315 @@
   <message>Generando listado de alumnos</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-28T18:45:08.975503400Z</date>
+  <millis>1738089908975</millis>
+  <nanos>503400</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+<record>
+  <date>2025-01-28T18:47:23.850821600Z</date>
+  <millis>1738090043850</millis>
+  <nanos>821600</nanos>
+  <sequence>104</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>actionAcercaDe</method>
+  <thread>25</thread>
+  <message>Acción 'Acerca De' ejecutada</message>
+</record>
+<record>
+  <date>2025-01-28T18:47:23.855817100Z</date>
+  <millis>1738090043855</millis>
+  <nanos>817100</nanos>
+  <sequence>105</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>generarVentana</method>
+  <thread>25</thread>
+  <message>Ventana generada: INFO</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T16:25:12.538948100Z</date>
+  <millis>1738167912538</millis>
+  <nanos>948100</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T17:08:45.775915200Z</date>
+  <millis>1738170525775</millis>
+  <nanos>915200</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T17:26:09.532416700Z</date>
+  <millis>1738171569532</millis>
+  <nanos>416700</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T17:26:45.584218800Z</date>
+  <millis>1738171605584</millis>
+  <nanos>218800</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T17:28:02.133964600Z</date>
+  <millis>1738171682133</millis>
+  <nanos>964600</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T17:29:10.790365300Z</date>
+  <millis>1738171750790</millis>
+  <nanos>365300</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T17:30:38.262738200Z</date>
+  <millis>1738171838262</millis>
+  <nanos>738200</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T18:26:54.510959600Z</date>
+  <millis>1738175214510</millis>
+  <nanos>959600</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T19:08:55.638469900Z</date>
+  <millis>1738177735638</millis>
+  <nanos>469900</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T19:10:11.141351100Z</date>
+  <millis>1738177811141</millis>
+  <nanos>351100</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T19:12:02.136191300Z</date>
+  <millis>1738177922136</millis>
+  <nanos>191300</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T19:13:01.421683100Z</date>
+  <millis>1738177981421</millis>
+  <nanos>683100</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T19:15:13.967563400Z</date>
+  <millis>1738178113967</millis>
+  <nanos>563400</nanos>
+  <sequence>1</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T19:32:38.897167500Z</date>
+  <millis>1738179158897</millis>
+  <nanos>167500</nanos>
+  <sequence>2</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T19:34:42.258437500Z</date>
+  <millis>1738179282258</millis>
+  <nanos>437500</nanos>
+  <sequence>2</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T19:35:50.907420300Z</date>
+  <millis>1738179350907</millis>
+  <nanos>420300</nanos>
+  <sequence>2</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-29T19:36:34.689010500Z</date>
+  <millis>1738179394689</millis>
+  <nanos>10500</nanos>
+  <sequence>2</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+</log>
