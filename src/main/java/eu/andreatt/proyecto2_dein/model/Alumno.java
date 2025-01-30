@@ -7,8 +7,7 @@ import java.util.Objects;
  * incluyendo su DNI, nombre y apellidos. Esta clase proporciona métodos para
  * gestionar y acceder a dicha información de manera sencilla.
  *
- * <p>Un objeto de la clase `Alumno` se considera único si su DNI es único,
- * ya que este atributo actúa como identificador principal.
+ * @author andreatt
  */
 public class Alumno {
 

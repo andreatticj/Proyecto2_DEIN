@@ -39,156 +39,14 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Controlador para la clase MenuPrincipal
+ *
+ * @author andreatt
+ */
 public class MenuPrincipalController implements Initializable {
 
     private static final Logger LOGGER = Logger.getLogger(MenuPrincipalController.class.getName());
-
-    @FXML
-    private Button botonAgregarAlumno;
-
-    @FXML
-    private Button botonAgregarHistoricoPrestamo;
-
-    @FXML
-    private Button botonAgregarLibro;
-
-    @FXML
-    private Button botonAgregarPrestamo;
-
-    @FXML
-    private Button botonAlumno;
-
-    @FXML
-    private Button botonBorrarLibro;
-
-    @FXML
-    private Button botonEditarAlumno;
-
-    @FXML
-    private Button botonEditarLibro;
-
-    @FXML
-    private Button botonHistoricoPrestamo;
-
-    @FXML
-    private Button botonLibro;
-
-    @FXML
-    private Button botonPrestamo;
-
-    @FXML
-    private TableColumn<Alumno, String> columnApellido1Alumno;
-
-    @FXML
-    private TableColumn<Alumno, String> columnApellido2Alumno;
-
-    @FXML
-    private TableColumn<Libro, String> columnAutorLibro;
-
-    @FXML
-    private TableColumn<Libro, Integer> columnBajaLibro;
-
-    @FXML
-    private TableColumn<Libro, Integer> columnCodigoLibro;
-
-    @FXML
-    private TableColumn<HistoricoPrestamo, Integer> columnCodigoLibroHistoricoPrestamo;
-
-    @FXML
-    private TableColumn<Prestamo, Integer> columnCodigoLibroPrestamo;
-
-    @FXML
-    private TableColumn<Alumno, String> columnDniAlumno;
-
-    @FXML
-    private TableColumn<HistoricoPrestamo, String> columnDniAlumnoHistoricoPrestamo;
-
-    @FXML
-    private TableColumn<Prestamo, String> columnDniAlumnoPrestamo;
-
-    @FXML
-    private TableColumn<Libro, String> columnEditorialLibro;
-
-    @FXML
-    private TableColumn<Libro, String> columnEstadoLibro;
-
-    @FXML
-    private TableColumn<HistoricoPrestamo, Date> columnFechaDevolucionHistoricoPrestamo;
-
-    @FXML
-    private TableColumn<HistoricoPrestamo, Date> columnFechaPrestamoHistoricoPrestamo;
-
-    @FXML
-    private TableColumn<Prestamo, Date> columnFechaPrestamoPrestamo;
-
-    @FXML
-    private TableColumn<HistoricoPrestamo, Integer> columnIdPrestamoHistoricoPrestamo;
-
-    @FXML
-    private TableColumn<Prestamo, Integer> columnIdPrestamoPrestamo;
-
-    @FXML
-    private TableColumn<Alumno, String> columnNombreAlumno;
-
-    @FXML
-    private TableColumn<Libro, String> columnTituloLibro;
-
-    @FXML
-    private Label labelFiltro;
-
-    @FXML
-    private Label labelFiltroHistorico;
-
-    @FXML
-    private Label labelFiltroHistorico2;
-
-    @FXML
-    private Label labelTablaActual;
-
-    @FXML
-    private GridPane panelAlumno;
-
-    @FXML
-    private GridPane panelHistoricoPrestamo;
-
-    @FXML
-    private GridPane panelLibro;
-
-    @FXML
-    private GridPane panelPrestamo;
-
-    @FXML
-    private TableView<Alumno> tableAlumno;
-
-    @FXML
-    private TableView<HistoricoPrestamo> tableHistoricoPrestamo;
-
-    @FXML
-    private TableView<Libro> tableLibro;
-
-    @FXML
-    private TableView<Prestamo> tablePrestamo;
-
-    @FXML
-    private TextField textFieldFiltro;
-
-    private AlumnoDao alumnoDao;
-    private LibroDao libroDao;
-    private PrestamoDao prestamoDao;
-    private HistoricoDao historicoDao;
-
-    private ObservableList<Alumno> alumnosExistentes;
-    private ObservableList<Libro> librosExistentes;
-    private ObservableList<Prestamo> prestamosExistentes;
-    private ObservableList<HistoricoPrestamo> historicosExistentes;
-
-    private ObservableList<Alumno> alumnosOriginales;
-    private ObservableList<Libro> librosOriginales;
-    private ObservableList<Prestamo> prestamosOriginales;
-    private ObservableList<HistoricoPrestamo> historicosOriginales;
-
-    private ResourceBundle bundle;
-    private ConexionBD conexionBD;
 
     static {
         try {
@@ -198,6 +56,107 @@ public class MenuPrincipalController implements Initializable {
             LOGGER.log(Level.SEVERE, "Error al configurar el logger", e);
         }
     }
+
+    @FXML
+    private Button botonAgregarAlumno;
+    @FXML
+    private Button botonAgregarHistoricoPrestamo;
+    @FXML
+    private Button botonAgregarLibro;
+    @FXML
+    private Button botonAgregarPrestamo;
+    @FXML
+    private Button botonAlumno;
+    @FXML
+    private Button botonBorrarLibro;
+    @FXML
+    private Button botonEditarAlumno;
+    @FXML
+    private Button botonEditarLibro;
+    @FXML
+    private Button botonHistoricoPrestamo;
+    @FXML
+    private Button botonLibro;
+    @FXML
+    private Button botonPrestamo;
+    @FXML
+    private TableColumn<Alumno, String> columnApellido1Alumno;
+    @FXML
+    private TableColumn<Alumno, String> columnApellido2Alumno;
+    @FXML
+    private TableColumn<Libro, String> columnAutorLibro;
+    @FXML
+    private TableColumn<Libro, Integer> columnBajaLibro;
+    @FXML
+    private TableColumn<Libro, Integer> columnCodigoLibro;
+    @FXML
+    private TableColumn<HistoricoPrestamo, Integer> columnCodigoLibroHistoricoPrestamo;
+    @FXML
+    private TableColumn<Prestamo, Integer> columnCodigoLibroPrestamo;
+    @FXML
+    private TableColumn<Alumno, String> columnDniAlumno;
+    @FXML
+    private TableColumn<HistoricoPrestamo, String> columnDniAlumnoHistoricoPrestamo;
+    @FXML
+    private TableColumn<Prestamo, String> columnDniAlumnoPrestamo;
+    @FXML
+    private TableColumn<Libro, String> columnEditorialLibro;
+    @FXML
+    private TableColumn<Libro, String> columnEstadoLibro;
+    @FXML
+    private TableColumn<HistoricoPrestamo, Date> columnFechaDevolucionHistoricoPrestamo;
+    @FXML
+    private TableColumn<HistoricoPrestamo, Date> columnFechaPrestamoHistoricoPrestamo;
+    @FXML
+    private TableColumn<Prestamo, Date> columnFechaPrestamoPrestamo;
+    @FXML
+    private TableColumn<HistoricoPrestamo, Integer> columnIdPrestamoHistoricoPrestamo;
+    @FXML
+    private TableColumn<Prestamo, Integer> columnIdPrestamoPrestamo;
+    @FXML
+    private TableColumn<Alumno, String> columnNombreAlumno;
+    @FXML
+    private TableColumn<Libro, String> columnTituloLibro;
+    @FXML
+    private Label labelFiltro;
+    @FXML
+    private Label labelFiltroHistorico;
+    @FXML
+    private Label labelFiltroHistorico2;
+    @FXML
+    private Label labelTablaActual;
+    @FXML
+    private GridPane panelAlumno;
+    @FXML
+    private GridPane panelHistoricoPrestamo;
+    @FXML
+    private GridPane panelLibro;
+    @FXML
+    private GridPane panelPrestamo;
+    @FXML
+    private TableView<Alumno> tableAlumno;
+    @FXML
+    private TableView<HistoricoPrestamo> tableHistoricoPrestamo;
+    @FXML
+    private TableView<Libro> tableLibro;
+    @FXML
+    private TableView<Prestamo> tablePrestamo;
+    @FXML
+    private TextField textFieldFiltro;
+    private AlumnoDao alumnoDao;
+    private LibroDao libroDao;
+    private PrestamoDao prestamoDao;
+    private HistoricoDao historicoDao;
+    private ObservableList<Alumno> alumnosExistentes;
+    private ObservableList<Libro> librosExistentes;
+    private ObservableList<Prestamo> prestamosExistentes;
+    private ObservableList<HistoricoPrestamo> historicosExistentes;
+    private ObservableList<Alumno> alumnosOriginales;
+    private ObservableList<Libro> librosOriginales;
+    private ObservableList<Prestamo> prestamosOriginales;
+    private ObservableList<HistoricoPrestamo> historicosOriginales;
+    private ResourceBundle bundle;
+    private ConexionBD conexionBD;
 
     /**
      * Funcion de inicialización que se ejecuta al cargar la ventana.
@@ -269,10 +228,10 @@ public class MenuPrincipalController implements Initializable {
         List<EventHandler<ActionEvent>> accionesAlumno = Arrays.asList(this::actionAgregarAlumno, this::actionEditarAlumno);
         List<String> entidadesLibro = Arrays.asList("contAgregarLibro", "contModificarLibro", "contBorrarLibro");
         List<EventHandler<ActionEvent>> accionesLibro = Arrays.asList(this::actionAgregarLibro, this::actionEditarLibro, this::actionBorrarLibro);
-        List<String> entidadesPrestamo = Arrays.asList("contAgregarPrestamo");
-        List<EventHandler<ActionEvent>> accionesPrestamo = Arrays.asList(this::actionAgregarPrestamo);
-        List<String> entidadesHistorico = Arrays.asList("contAgregarHistorico");
-        List<EventHandler<ActionEvent>> accionesHistorico = Arrays.asList(this::actionAgregarHistoricoPrestamo);
+        List<String> entidadesPrestamo = List.of("contAgregarPrestamo");
+        List<EventHandler<ActionEvent>> accionesPrestamo = List.of(this::actionAgregarPrestamo);
+        List<String> entidadesHistorico = List.of("contAgregarHistorico");
+        List<EventHandler<ActionEvent>> accionesHistorico = List.of(this::actionAgregarHistoricoPrestamo);
 
         tableAlumno.setContextMenu(crearContextMenu(entidadesAlumno, accionesAlumno));
         tableLibro.setContextMenu(crearContextMenu(entidadesLibro, accionesLibro));

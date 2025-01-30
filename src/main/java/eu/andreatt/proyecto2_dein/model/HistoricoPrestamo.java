@@ -5,6 +5,8 @@ import java.util.Objects;
 
 /**
  * La clase `HistoricoPrestamo` representa un registro en el historial de préstamos de libros.
+ *
+ * @author andreatt
  */
 public class HistoricoPrestamo {
 

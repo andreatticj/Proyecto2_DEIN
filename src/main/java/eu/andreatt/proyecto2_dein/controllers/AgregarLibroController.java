@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 
 /**
  * Controlador para la ventana de agregar/editar Libro.
+ *
+ * @author andreatt
  */
 public class AgregarLibroController implements Initializable {
 
@@ -60,6 +62,16 @@ public class AgregarLibroController implements Initializable {
     private Libro libro;
 
     /**
+     * Verifica si una cadena es un número entero.
+     *
+     * @param valor Cadena a verificar
+     * @return `true` si es un número entero, `false` en caso contrario
+     */
+    private static boolean esNumeroEntero(String valor) {
+        return valor.matches("-?\\d+");
+    }
+
+    /**
      * Inicializa la clase con el URL y ResourceBundle.
      *
      * @param arg0 URL del archivo FXML
@@ -99,7 +111,7 @@ public class AgregarLibroController implements Initializable {
      * Inicializa los atributos con la lista de libros existentes y el libro a editar.
      *
      * @param librosExistentes Lista de libros existentes
-     * @param libro             Libro a editar
+     * @param libro            Libro a editar
      */
     public void initAttributtes(ObservableList<Libro> librosExistentes, Libro libro) {
         this.librosExistentes = librosExistentes;
@@ -234,16 +246,6 @@ public class AgregarLibroController implements Initializable {
         }
 
         return errores;
-    }
-
-    /**
-     * Verifica si una cadena es un número entero.
-     *
-     * @param valor Cadena a verificar
-     * @return `true` si es un número entero, `false` en caso contrario
-     */
-    private static boolean esNumeroEntero(String valor) {
-        return valor.matches("-?\\d+");
     }
 
     /**

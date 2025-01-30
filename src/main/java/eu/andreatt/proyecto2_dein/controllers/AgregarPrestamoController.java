@@ -1,13 +1,5 @@
 package eu.andreatt.proyecto2_dein.controllers;
 
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
-
 import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
 import eu.andreatt.proyecto2_dein.dao.AlumnoDao;
 import eu.andreatt.proyecto2_dein.dao.LibroDao;
@@ -17,11 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -29,15 +17,27 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 
 /**
  * Controlador para la ventana de agregar préstamo.
+ *
+ * @author andreatt
  */
 public class AgregarPrestamoController implements Initializable {
 
-    /** LOGGER para registrar eventos y errores. */
+    /**
+     * LOGGER para registrar eventos y errores.
+     */
     private static final Logger logger = Logger.getLogger(AgregarPrestamoController.class.getName());
 
     @FXML

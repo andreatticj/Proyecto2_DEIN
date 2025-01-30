@@ -1,10 +1,5 @@
 package eu.andreatt.proyecto2_dein.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import eu.andreatt.proyecto2_dein.model.Help;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,8 +8,15 @@ import javafx.scene.control.TreeView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Controlador para la ventana de visor de ayuda offline.
+ *
+ * @author andreatt
  */
 public class VisorAyudaOfflineController implements Initializable {
 
@@ -64,7 +66,7 @@ public class VisorAyudaOfflineController implements Initializable {
         // Añadimos un evento para cambiar de html al pinchar en el árbol
         arbol.setOnMouseClicked(e -> {
             if (arbol.getSelectionModel().getSelectedItem() != null) {
-                Help elemento = (Help) arbol.getSelectionModel().getSelectedItem().getValue();
+                Help elemento = arbol.getSelectionModel().getSelectedItem().getValue();
                 if (elemento.getHtml() != null) {
                     LOGGER.log(Level.INFO, "Elemento seleccionado: {0}", elemento.getHtml());
                     loadHelp(elemento.getHtml(), elemento.isLocal());

@@ -3,12 +3,14 @@ package eu.andreatt.proyecto2_dein.model;
 /**
  * La clase `Help` representa una sección de ayuda que incluye un texto descriptivo
  * y un contenido HTML opcional, el cual puede estar alojado localmente o en un servidor remoto.
+ *
+ * @author andreatt
  */
 public class Help {
 
-    private String text;
+    private final String text;
 
-    private String html;
+    private final String html;
 
     private boolean local = true;
 

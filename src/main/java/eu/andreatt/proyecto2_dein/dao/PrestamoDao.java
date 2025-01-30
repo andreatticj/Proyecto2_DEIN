@@ -1,19 +1,21 @@
 package eu.andreatt.proyecto2_dein.dao;
 
+import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
+import eu.andreatt.proyecto2_dein.model.Prestamo;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
-import eu.andreatt.proyecto2_dein.model.Prestamo;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 
 /**
  * La clase `PrestamoDao` proporciona métodos para realizar operaciones relacionadas con la entidad Prestamo en la base de datos.
+ *
+ * @author andreatt
  */
 public class PrestamoDao {
 

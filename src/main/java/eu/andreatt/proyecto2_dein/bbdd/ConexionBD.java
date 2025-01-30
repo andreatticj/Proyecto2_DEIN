@@ -14,13 +14,19 @@ import java.util.logging.Logger;
 /**
  * Clase que gestiona la conexión con la base de datos.
  * Utiliza las propiedades de conexión definidas en la clase {@link Propiedades}.
+ *
+ * @author andreatt
  */
 public class ConexionBD {
 
-    /** Logger para registrar eventos y errores. */
+    /**
+     * Logger para registrar eventos y errores.
+     */
     private static final Logger LOGGER = Logger.getLogger(ConexionBD.class.getName());
 
-    /** Conexión activa con la base de datos. */
+    /**
+     * Conexión activa con la base de datos.
+     */
     private Connection conexion;
 
     /**
@@ -73,8 +79,8 @@ public class ConexionBD {
     /**
      * Genera una ventana de alerta para mostrar errores al usuario.
      *
-     * @param titulo   Título de la alerta.
-     * @param mensaje  Mensaje que describe el error ocurrido.
+     * @param titulo  Título de la alerta.
+     * @param mensaje Mensaje que describe el error ocurrido.
      */
     private void generarVentanaAlerta(String titulo, String mensaje) {
         Alert alerta = new Alert(AlertType.ERROR);

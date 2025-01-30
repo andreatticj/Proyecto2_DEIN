@@ -1,9 +1,5 @@
 package eu.andreatt.proyecto2_dein.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.logging.Logger;
-
 import eu.andreatt.proyecto2_dein.dao.AlumnoDao;
 import eu.andreatt.proyecto2_dein.model.Alumno;
 import javafx.collections.ObservableList;
@@ -11,17 +7,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 /**
  * Controlador para la ventana de agregar/editar Alumno.
+ *
+ * @author andreatt
  */
 public class AgregarAlumnoController implements Initializable {
 
-    /** Logger para registrar eventos y errores. */
+    /**
+     * Logger para registrar eventos y errores.
+     */
     private static final Logger LOGGER = Logger.getLogger(AgregarAlumnoController.class.getName());
 
     @FXML

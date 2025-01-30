@@ -1,17 +1,19 @@
 package eu.andreatt.proyecto2_dein.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Logger;
-
 import eu.andreatt.proyecto2_dein.bbdd.ConexionBD;
 import eu.andreatt.proyecto2_dein.model.Libro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+
 /**
  * La clase `LibroDao` proporciona métodos para realizar operaciones relacionadas con la entidad Libro en la base de datos.
+ *
+ * @author andreatt
  */
 public class LibroDao {
 

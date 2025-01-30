@@ -25,10 +25,14 @@ import java.util.logging.Logger;
 
 /**
  * Controlador para la ventana de devolver un Libro.
+ *
+ * @author andreatt
  */
 public class AgregarHistoricoController implements Initializable {
 
-    /** LOGGER para registrar eventos y errores. */
+    /**
+     * LOGGER para registrar eventos y errores.
+     */
     private static final Logger LOGGER = Logger.getLogger(AgregarHistoricoController.class.getName());
 
     @FXML
@@ -108,13 +112,13 @@ public class AgregarHistoricoController implements Initializable {
      */
     @FXML
     void actionCancelar(ActionEvent event) {
-        LOGGER.info( "Acción cancelar ejecutada");
+        LOGGER.info("Acción cancelar ejecutada");
 
         // Cerrar ventana modal
         Stage stage = (Stage) botonCancelar.getScene().getWindow();
         stage.close();
 
-        LOGGER.info( "Ventana modal cerrada");
+        LOGGER.info("Ventana modal cerrada");
     }
 
     /**
@@ -124,7 +128,7 @@ public class AgregarHistoricoController implements Initializable {
      */
     @FXML
     void actionGuardar(ActionEvent event) {
-        LOGGER.info( "Acción guardar ejecutada");
+        LOGGER.info("Acción guardar ejecutada");
 
         String errores = validarDatos();
 
@@ -168,7 +172,7 @@ public class AgregarHistoricoController implements Initializable {
                 LOGGER.info("Ventana modal cerrada tras guardar");
 
             } catch (Exception e) {
-                LOGGER.severe("Error al guardar historial: "+ e.getMessage());
+                LOGGER.severe("Error al guardar historial: " + e.getMessage());
             }
         }
     }
@@ -219,7 +223,7 @@ public class AgregarHistoricoController implements Initializable {
         if (comboBoxIdPrestamo.getSelectionModel().getSelectedItem() == null) {
             errores += bundle.getString("mensajePrestamoVacio") + "\n";
         }
-        LOGGER.log(Level.WARNING,"Ningún item del combo seleccionado");
+        LOGGER.log(Level.WARNING, "Ningún item del combo seleccionado");
         return errores;
     }
 }

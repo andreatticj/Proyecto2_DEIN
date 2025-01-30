@@ -9,15 +9,18 @@ import java.util.logging.Logger;
  * Clase utilitaria para cargar y acceder a propiedades desde un archivo
  * de configuración en el classpath.
  *
- * Esta clase se inicializa automáticamente al ser utilizada y carga
- * las propiedades de un archivo llamado 'configuration.properties'.
+ * @author andreatt
  */
 public class Propiedades {
 
-    /** Logger para registrar eventos y errores. */
+    /**
+     * Logger para registrar eventos y errores.
+     */
     private static final Logger LOGGER = LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    /** Objeto de propiedades que almacena las claves y sus valores. */
+    /**
+     * Objeto de propiedades que almacena las claves y sus valores.
+     */
     private static final Properties props = new Properties();
 
     static {

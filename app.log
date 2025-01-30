@@ -386,3 +386,43 @@
   <message>Inicializando MenuPrincipalController</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-01-30T15:19:06.964191600Z</date>
+  <millis>1738250346964</millis>
+  <nanos>191600</nanos>
+  <sequence>2</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>initialize</method>
+  <thread>25</thread>
+  <message>Inicializando MenuPrincipalController</message>
+</record>
+<record>
+  <date>2025-01-30T15:19:49.755706100Z</date>
+  <millis>1738250389755</millis>
+  <nanos>706100</nanos>
+  <sequence>53</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>actionAcercaDe</method>
+  <thread>25</thread>
+  <message>Acción 'Acerca De' ejecutada</message>
+</record>
+<record>
+  <date>2025-01-30T15:19:49.760624300Z</date>
+  <millis>1738250389760</millis>
+  <nanos>624300</nanos>
+  <sequence>54</sequence>
+  <logger>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</logger>
+  <level>INFO</level>
+  <class>eu.andreatt.proyecto2_dein.controllers.MenuPrincipalController</class>
+  <method>generarVentana</method>
+  <thread>25</thread>
+  <message>Ventana generada: INFO</message>
+</record>
+</log>

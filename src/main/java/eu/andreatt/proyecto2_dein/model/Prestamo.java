@@ -5,6 +5,8 @@ import java.util.Objects;
 
 /**
  * La clase `Prestamo` representa un préstamo de un libro a un alumno en el sistema.
+ *
+ * @author andreatt
  */
 public class Prestamo {
 

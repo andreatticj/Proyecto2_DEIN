@@ -5,6 +5,8 @@ import java.util.Objects;
 
 /**
  * La clase `Libro` representa un libro en el sistema.
+ *
+ * @author andreatt
  */
 public class Libro {
 
@@ -15,13 +17,13 @@ public class Libro {
     /**
      * Constructor para la clase `Libro` que incluye información detallada, incluida la portada.
      *
-     * @param codigo   El código único del libro.
-     * @param titulo   El título del libro.
-     * @param autor    El autor del libro.
+     * @param codigo    El código único del libro.
+     * @param titulo    El título del libro.
+     * @param autor     El autor del libro.
      * @param editorial La editorial del libro.
-     * @param estado   El estado del libro.
-     * @param baja     El indicador de baja (0 o 1).
-     * @param portada  La representación en formato de flujo de bytes de la portada del libro.
+     * @param estado    El estado del libro.
+     * @param baja      El indicador de baja (0 o 1).
+     * @param portada   La representación en formato de flujo de bytes de la portada del libro.
      */
     public Libro(int codigo, String titulo, String autor, String editorial, String estado, int baja, InputStream portada) {
         this.codigo = codigo;
@@ -36,12 +38,12 @@ public class Libro {
     /**
      * Constructor para la clase `Libro` que excluye información detallada de la portada.
      *
-     * @param codigo   El código único del libro.
-     * @param titulo   El título del libro.
-     * @param autor    El autor del libro.
+     * @param codigo    El código único del libro.
+     * @param titulo    El título del libro.
+     * @param autor     El autor del libro.
      * @param editorial La editorial del libro.
-     * @param estado   El estado del libro.
-     * @param baja     El indicador de baja (0 o 1).
+     * @param estado    El estado del libro.
+     * @param baja      El indicador de baja (0 o 1).
      */
     public Libro(int codigo, String titulo, String autor, String editorial, String estado, int baja) {
         this.codigo = codigo;
